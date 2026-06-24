@@ -168,40 +168,24 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
       <div><div class="login-title">BauDesk</div><div class="login-sub">Projektmanagement</div></div>
     </div>
     <div class="login-error" id="login-error"></div>
-    <div class="login-success" id="login-success" style="display:none;">
-      ✅ Eingeloggt!
-    </div>
+    <div class="login-success" id="login-success" style="display:none;">✅ Eingeloggt!</div>
     <div id="login-form">
-      <div id="step-email">
-        <div class="login-field">
-          <label>E-Mail</label>
-          <input type="email" id="l-email" placeholder="name@musa-elektrotechnik.de" autocomplete="username" onkeydown="if(event.key==='Enter')doSendOtp()">
-        </div>
-        <button class="btn-login" id="btn-send-otp" onclick="doSendOtp()">📨 Code senden</button>
-        <div class="login-hint">
-          Kein Passwort nötig.<br>
-          Code kommt per E-Mail → eintippen → fertig.<br><br>
-          <b>Demo:</b> mueller@ · bauer@ · kern@<br>
-          schneider@ · wahl@ · pl@<br>
-          <span style="color:#ccc;">@musa-elektrotechnik.de</span>
-        </div>
+      <div class="login-field">
+        <label>Name</label>
+        <select id="l-name" style="font-size:15px;padding:12px 14px;border:1.5px solid #e0e0e0;border-radius:8px;width:100%;background:white;">
+          <option value="">— Mitarbeiter auswählen —</option>
+        </select>
       </div>
-      <div id="step-otp" style="display:none;">
-        <div style="text-align:center;margin-bottom:18px;">
-          <div style="font-size:32px;margin-bottom:8px;">📬</div>
-          <div style="font-size:14px;font-weight:700;">Code eingeben</div>
-          <div style="font-size:12px;color:#888;margin-top:4px;" id="otp-email-hint">—</div>
-        </div>
-        <div class="login-field">
-          <label>6-stelliger Code</label>
-          <input type="text" id="l-otp" placeholder="123456" maxlength="6" inputmode="numeric" pattern="[0-9]*"
-            style="font-size:28px;letter-spacing:.3em;text-align:center;font-weight:700;"
-            onkeydown="if(event.key==='Enter')doVerifyOtp()">
-        </div>
-        <button class="btn-login" id="btn-verify-otp" onclick="doVerifyOtp()">✅ Einloggen</button>
-        <div style="text-align:center;margin-top:12px;">
-          <span style="font-size:12px;color:#aaa;cursor:pointer;" onclick="resetLogin()">← Andere E-Mail</span>
-        </div>
+      <div class="login-field">
+        <label>PIN</label>
+        <input type="password" id="l-pin" placeholder="••••" maxlength="4" inputmode="numeric"
+          style="font-size:28px;letter-spacing:.4em;text-align:center;font-weight:700;"
+          onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <button class="btn-login" id="btn-login" onclick="doLogin()">Einloggen →</button>
+      <div class="login-hint">
+        Monteure: PIN <b>1234</b><br>
+        Projektleiter: PIN <b>9999</b>
       </div>
     </div>
   </div>
@@ -357,72 +341,83 @@ let selectedLeistung=null,fotoData=[];
 let currentFilter='alle',currentPeriod='woche';
 let uhrzeitInterval=null,stempelInterval=null,aktiverStempel=null;
 
-// ── OTP LOGIN ──
-async function doSendOtp(){
-  const email=document.getElementById('l-email').value.trim().toLowerCase();
+// ── PIN LOGIN ──
+async function doLogin(){
+  const nameVal=document.getElementById('l-name').value;
+  const pin=document.getElementById('l-pin').value.trim();
   const errEl=document.getElementById('login-error');
   errEl.style.display='none';
-  if(!email){errEl.textContent='Bitte E-Mail eingeben.';errEl.style.display='block';return;}
-  const btn=document.getElementById('btn-send-otp');
-  btn.disabled=true;btn.textContent='⏳ Sende Code…';
-  const {error}=await db.auth.signInWithOtp({email,options:{shouldCreateUser:false}});
-  if(error){errEl.textContent='Fehler: '+error.message;errEl.style.display='block';btn.disabled=false;btn.textContent='📨 Code senden';return;}
-  document.getElementById('step-email').style.display='none';
-  document.getElementById('step-otp').style.display='block';
-  document.getElementById('otp-email-hint').textContent='Code gesendet an: '+email;
-  document.getElementById('l-otp').focus();
-  btn.disabled=false;btn.textContent='📨 Code senden';
-}
-
-async function doVerifyOtp(){
-  const email=document.getElementById('l-email').value.trim().toLowerCase();
-  const token=document.getElementById('l-otp').value.trim();
-  const errEl=document.getElementById('login-error');
-  errEl.style.display='none';
-  if(token.length!==6){errEl.textContent='Bitte 6-stelligen Code eingeben.';errEl.style.display='block';return;}
-  const btn=document.getElementById('btn-verify-otp');
-  btn.disabled=true;btn.textContent='⏳ Prüfe Code…';
-  const {data,error}=await db.auth.verifyOtp({email,token,type:'email'});
-  if(error){errEl.textContent='Code falsch oder abgelaufen.';errEl.style.display='block';btn.disabled=false;btn.textContent='✅ Einloggen';return;}
-  btn.disabled=false;btn.textContent='✅ Einloggen';
-}
-
-function resetLogin(){
-  document.getElementById('step-email').style.display='block';
-  document.getElementById('step-otp').style.display='none';
-  document.getElementById('l-otp').value='';
-  document.getElementById('login-error').style.display='none';
-}
-
-async function startSession(user){
-  currentUser=user;
-  const {data:ma}=await db.from('musa_mitarbeiter').select('*').eq('auth_user_id',user.id).single();
-  currentMa=ma;
+  if(!nameVal){errEl.textContent='Bitte Mitarbeiter auswählen.';errEl.style.display='block';return;}
+  if(!pin){errEl.textContent='Bitte PIN eingeben.';errEl.style.display='block';return;}
+  const btn=document.getElementById('btn-login');
+  btn.disabled=true;btn.textContent='⏳ Prüfe PIN…';
+  // Mitarbeiter mit PIN aus Supabase laden
+  const {data,error}=await db.from('musa_mitarbeiter').select('*').eq('id',nameVal).eq('pin',pin).single();
+  if(error||!data){
+    errEl.textContent='PIN falsch. Bitte nochmal versuchen.';
+    errEl.style.display='block';
+    btn.disabled=false;btn.textContent='Einloggen →';
+    return;
+  }
+  currentMa=data;
+  currentUser={id:data.id,email:data.email};
+  // Session in localStorage speichern
+  localStorage.setItem('musa_session', JSON.stringify({maId:data.id,ts:Date.now()}));
   document.getElementById('login-screen').style.display='none';
   document.getElementById('app').style.display='block';
-  document.getElementById('user-name').textContent=ma?.name||user.email;
-  document.getElementById('user-rolle').textContent=(ma?.rolle||'')+'  ·  Abmelden';
-  if(ma?.rolle==='monteur') document.querySelectorAll('.pl-only').forEach(t=>t.style.display='none');
+  document.getElementById('user-name').textContent=data.name;
+  document.getElementById('user-rolle').textContent=(data.rolle||'')+'  ·  Abmelden';
+  if(data.rolle==='monteur') document.querySelectorAll('.pl-only').forEach(t=>t.style.display='none');
   startUhr();
   await init();
+  btn.disabled=false;btn.textContent='Einloggen →';
 }
 
 async function doLogout(){
-  await db.auth.signOut();
   clearInterval(uhrzeitInterval);clearInterval(stempelInterval);
   currentUser=null;currentMa=null;aktiverStempel=null;
+  localStorage.removeItem('musa_session');
   document.getElementById('app').style.display='none';
   document.getElementById('login-screen').style.display='flex';
-  document.getElementById('step-email').style.display='block';
-  document.getElementById('step-otp').style.display='none';
-  document.getElementById('l-email').value='';
-  document.getElementById('l-otp').value='';
+  document.getElementById('l-pin').value='';
+  document.getElementById('l-name').value='';
+  document.getElementById('login-error').style.display='none';
 }
 
-// Session beim Laden prüfen (auch nach Magic Link Redirect)
-db.auth.onAuthStateChange(async(event,session)=>{
-  if(session&&!currentUser) await startSession(session.user);
-});
+// Session aus localStorage wiederherstellen
+async function restoreSession(){
+  const s=localStorage.getItem('musa_session');
+  if(!s)return;
+  try{
+    const sess=JSON.parse(s);
+    // Max 8h Session
+    if(Date.now()-sess.ts > 8*3600*1000){localStorage.removeItem('musa_session');return;}
+    const {data}=await db.from('musa_mitarbeiter').select('*').eq('id',sess.maId).single();
+    if(!data){localStorage.removeItem('musa_session');return;}
+    currentMa=data;currentUser={id:data.id,email:data.email};
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('app').style.display='block';
+    document.getElementById('user-name').textContent=data.name;
+    document.getElementById('user-rolle').textContent=(data.rolle||'')+'  ·  Abmelden';
+    if(data.rolle==='monteur') document.querySelectorAll('.pl-only').forEach(t=>t.style.display='none');
+    startUhr();
+    await init();
+  }catch(e){localStorage.removeItem('musa_session');}
+}
+// Mitarbeiter-Liste für Login vorab laden
+(async function(){
+  const {data}=await db.from('musa_mitarbeiter').select('id,name,rolle').order('name');
+  const sel=document.getElementById('l-name');
+  if(sel&&data){
+    data.forEach(m=>{
+      const o=document.createElement('option');
+      o.value=m.id;
+      o.textContent=m.name;
+      sel.appendChild(o);
+    });
+  }
+})();
+restoreSession();
 
 // ── UHR ──
 function startUhr(){
@@ -444,6 +439,12 @@ async function init(){
     db.from('musa_mitarbeiter').select('*').order('name')
   ]);
   projekte=p||[];mitarbeiter=m||[];
+  // Mitarbeiter-Dropdown befüllen
+  const nameSelect=document.getElementById('l-name');
+  if(nameSelect){
+    nameSelect.innerHTML='<option value="">— Mitarbeiter auswählen —</option>';
+    mitarbeiter.forEach(m=>{const o=document.createElement('option');o.value=m.id;o.textContent=m.name+' ('+m.rolle+')';nameSelect.appendChild(o);});
+  }
   ['r-projekt','s-projekt','rneu-projekt'].forEach(id=>{
     const sel=document.getElementById(id);if(!sel)return;
     sel.innerHTML='<option value="">— Projekt auswählen —</option>';
