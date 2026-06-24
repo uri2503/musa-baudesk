@@ -10,8 +10,6 @@
 :root{--rot:#E2001A;--rot-dark:#b50015;--dunkel:#1a1a1a;--grau:#3d3d3d;--hellgrau:#f2f2f2;--rand:#e0e0e0;--gruen:#2e7d32;--orange:#e65100;--blau:#1565c0;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--hellgrau);color:var(--dunkel);min-height:100vh;}
-
-/* LOGIN */
 #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--dunkel);padding:20px;}
 .login-box{background:white;border-radius:14px;padding:36px 28px;width:100%;max-width:360px;}
 .login-logo{display:flex;align-items:center;gap:10px;margin-bottom:28px;}
@@ -24,9 +22,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .btn-login{width:100%;padding:14px;background:var(--rot);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;margin-top:6px;}
 .btn-login:hover{background:var(--rot-dark);}.btn-login:disabled{background:#ccc;cursor:not-allowed;}
 .login-error{background:#fff0f0;color:var(--rot);font-size:13px;padding:10px 14px;border-radius:8px;margin-bottom:14px;display:none;}
-.login-hint{font-size:11px;color:#bbb;text-align:center;margin-top:14px;line-height:1.6;}
-
-/* APP SHELL */
+.login-success{background:#e8f5e9;color:var(--gruen);font-size:14px;padding:16px;border-radius:8px;margin-bottom:14px;display:none;text-align:center;line-height:1.6;}
+.login-hint{font-size:11px;color:#bbb;text-align:center;margin-top:14px;line-height:1.8;}
+.login-hint b{color:#999;}
 #app{display:none;}
 header{background:var(--dunkel);color:white;display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:56px;position:sticky;top:0;z-index:100;}
 .logo{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;}
@@ -38,23 +36,17 @@ header{background:var(--dunkel);color:white;display:flex;align-items:center;just
 .tab-btn{flex-shrink:0;padding:12px 14px;background:none;border:none;color:#777;font-size:12px;font-weight:600;cursor:pointer;letter-spacing:.03em;text-transform:uppercase;border-bottom:3px solid transparent;transition:all .15s;white-space:nowrap;}
 .tab-btn.active{color:white;border-bottom-color:var(--rot);}
 .view{display:none;}.view.active{display:block;}
-
-/* STEMPELUHR WIDGET */
 .stempel-widget{margin:16px;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.12);}
 .stempel-header{background:var(--dunkel);padding:20px;text-align:center;}
-.stempel-uhr{font-size:52px;font-weight:800;color:white;letter-spacing:0.05em;font-variant-numeric:tabular-nums;line-height:1;}
+.stempel-uhr{font-size:52px;font-weight:800;color:white;letter-spacing:.05em;font-variant-numeric:tabular-nums;line-height:1;}
 .stempel-datum{font-size:13px;color:#888;margin-top:4px;}
 .stempel-status{display:inline-block;margin-top:10px;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
-.stempel-status.ein{background:#e8f5e9;color:var(--gruen);}
-.stempel-status.aus{background:#f5f5f5;color:#777;}
+.stempel-status.ein{background:#e8f5e9;color:var(--gruen);}.stempel-status.aus{background:#f5f5f5;color:#777;}
 .stempel-body{background:white;padding:16px;}
-.stempel-projekt{margin-bottom:12px;}
 .stempel-btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.btn-kommen{padding:18px;background:var(--gruen);color:white;border:none;border-radius:10px;font-size:16px;font-weight:800;cursor:pointer;transition:all .15s;}
-.btn-kommen:hover{background:#1b5e20;}
+.btn-kommen{padding:18px;background:var(--gruen);color:white;border:none;border-radius:10px;font-size:16px;font-weight:800;cursor:pointer;}
 .btn-kommen:disabled{background:#ccc;cursor:not-allowed;}
-.btn-gehen{padding:18px;background:var(--rot);color:white;border:none;border-radius:10px;font-size:16px;font-weight:800;cursor:pointer;transition:all .15s;}
-.btn-gehen:hover{background:var(--rot-dark);}
+.btn-gehen{padding:18px;background:var(--rot);color:white;border:none;border-radius:10px;font-size:16px;font-weight:800;cursor:pointer;}
 .btn-gehen:disabled{background:#ccc;cursor:not-allowed;}
 .stempel-info{background:var(--hellgrau);border-radius:8px;padding:12px;margin-top:12px;font-size:13px;color:var(--grau);text-align:center;line-height:1.6;}
 .stempel-info strong{color:var(--dunkel);}
@@ -62,10 +54,8 @@ header{background:var(--dunkel);color:white;display:flex;align-items:center;just
 .stempel-history-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:8px;}
 .stempel-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--rand);font-size:13px;}
 .stempel-row:last-child{border-bottom:none;}
-.stempel-row-datum{color:#888;}
+.stempel-row-datum{color:#888;font-size:12px;}
 .stempel-row-std{font-weight:700;color:var(--dunkel);}
-
-/* RAPPORT */
 .form-wrap{max-width:540px;margin:0 auto;padding:16px 16px 60px;}
 .section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:8px;margin-top:20px;}
 select,input[type="text"],input[type="number"],input[type="date"],textarea{width:100%;padding:12px 14px;border:1.5px solid var(--rand);border-radius:8px;font-size:15px;background:white;color:var(--dunkel);appearance:none;-webkit-appearance:none;}
@@ -87,8 +77,6 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
 .foto-thumb{aspect-ratio:1;object-fit:cover;border-radius:6px;border:1.5px solid var(--rand);width:100%;}
 .btn-primary{width:100%;padding:16px;background:var(--rot);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;margin-top:20px;transition:background .15s;}
 .btn-primary:hover{background:var(--rot-dark);}.btn-primary:disabled{background:#ccc;cursor:not-allowed;}
-
-/* DASHBOARD */
 .dashboard{padding:16px;max-width:900px;margin:0 auto;}
 .kpi-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px;}
 @media(min-width:600px){.kpi-row{grid-template-columns:repeat(4,1fr);}}
@@ -108,10 +96,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
 .projekt-name{font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .projekt-meta{font-size:12px;color:#888;margin-top:2px;}
 .status-badge{flex-shrink:0;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
-.status-offen{background:#fff3e0;color:var(--orange);}
-.status-aktiv{background:#e3f2fd;color:var(--blau);}
-.status-abnahme{background:#e8f5e9;color:var(--gruen);}
-.status-abgerechnet{background:#f5f5f5;color:#777;}
+.status-offen{background:#fff3e0;color:var(--orange);}.status-aktiv{background:#e3f2fd;color:var(--blau);}.status-abnahme{background:#e8f5e9;color:var(--gruen);}.status-abgerechnet{background:#f5f5f5;color:#777;}
 .leistung-tag{display:inline-block;background:var(--hellgrau);color:var(--grau);font-size:10px;font-weight:700;letter-spacing:.05em;padding:2px 8px;border-radius:4px;text-transform:uppercase;margin-right:4px;margin-top:2px;}
 .rapport-list{display:none;border-top:1px solid var(--rand);padding:12px 16px;background:#fafafa;}
 .rapport-list.open{display:block;}
@@ -126,24 +111,19 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
 .rapport-text{font-size:13px;color:var(--grau);margin-top:3px;line-height:1.4;}
 .rapport-stunden{font-size:11px;color:var(--rot);font-weight:700;margin-top:4px;}
 .stunden-bar{padding:12px 16px;border-top:1px solid var(--rand);display:flex;align-items:center;justify-content:space-between;}
-.stunden-info{font-size:12px;color:#888;font-weight:600;}
-.stunden-summe{font-size:14px;font-weight:800;}
-.btn-rechnung{padding:7px 14px;background:var(--dunkel);color:white;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;transition:background .15s;}
+.stunden-info{font-size:12px;color:#888;font-weight:600;}.stunden-summe{font-size:14px;font-weight:800;}
+.btn-rechnung{padding:7px 14px;background:var(--dunkel);color:white;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;}
 .btn-rechnung:hover{background:var(--rot);}
 .toggle-icon{font-size:18px;color:#bbb;transition:transform .2s;}
 .projekt-card.open .toggle-icon{transform:rotate(180deg);}
-
-/* AUSWERTUNG */
 .auswertung-wrap{padding:16px;max-width:800px;margin:0 auto;}
 .period-row{display:flex;gap:8px;margin-bottom:20px;}
-.period-btn{flex:1;padding:10px;border:1.5px solid var(--rand);border-radius:8px;background:white;font-size:13px;font-weight:600;color:var(--grau);cursor:pointer;text-align:center;transition:all .15s;}
+.period-btn{flex:1;padding:10px;border:1.5px solid var(--rand);border-radius:8px;background:white;font-size:13px;font-weight:600;color:var(--grau);cursor:pointer;text-align:center;}
 .period-btn.active{background:var(--dunkel);border-color:var(--dunkel);color:white;}
 .ma-card{background:white;border-radius:10px;border:1.5px solid var(--rand);padding:14px;margin-bottom:10px;}
 .ma-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
-.ma-name{font-size:14px;font-weight:700;}
-.ma-rolle-tag{font-size:10px;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:4px;background:var(--hellgrau);color:var(--grau);}
-.ma-stunden-gross{font-size:24px;font-weight:800;color:var(--rot);}
-.ma-stunden-label{font-size:11px;color:#888;}
+.ma-name{font-size:14px;font-weight:700;}.ma-rolle-tag{font-size:10px;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:4px;background:var(--hellgrau);color:var(--grau);}
+.ma-stunden-gross{font-size:24px;font-weight:800;color:var(--rot);}.ma-stunden-label{font-size:11px;color:#888;}
 .bar-wrap{height:10px;background:var(--hellgrau);border-radius:5px;overflow:hidden;margin-top:8px;}
 .bar-fill{height:100%;background:var(--rot);border-radius:5px;transition:width .6s ease;}
 .ma-details{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;}
@@ -151,21 +131,16 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
 .ma-detail-val{font-size:16px;font-weight:800;color:var(--dunkel);}
 .ma-detail-lbl{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.05em;}
 .gesamt-card{background:var(--dunkel);color:white;border-radius:10px;padding:16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-.gesamt-val{font-size:32px;font-weight:800;color:white;}
-.gesamt-lbl{font-size:12px;color:#888;}
-
-/* RECHNUNGEN */
+.gesamt-val{font-size:32px;font-weight:800;}
 .rechnungen-wrap{padding:16px;max-width:800px;margin:0 auto;}
 .rechnung-card{background:white;border-radius:10px;border:1.5px solid var(--rand);padding:16px;margin-bottom:12px;}
 .rechnung-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;}
-.rechnung-nr{font-size:14px;font-weight:800;}
-.rechnung-projekt{font-size:13px;color:#888;margin-top:2px;}
-.rechnung-betrag{font-size:20px;font-weight:800;color:var(--rot);text-align:right;}
-.rechnung-sub{font-size:11px;color:#888;text-align:right;}
+.rechnung-nr{font-size:14px;font-weight:800;}.rechnung-projekt{font-size:13px;color:#888;margin-top:2px;}
+.rechnung-betrag{font-size:20px;font-weight:800;color:var(--rot);text-align:right;}.rechnung-sub{font-size:11px;color:#888;text-align:right;}
 .rechnung-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid var(--rand);flex-wrap:wrap;gap:10px;}
 .r-status{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;}
 .r-entwurf{background:#f5f5f5;color:#777;}.r-gesendet{background:#e3f2fd;color:var(--blau);}.r-bezahlt{background:#e8f5e9;color:var(--gruen);}
-.neu-rechnung-btn{width:100%;padding:14px;border:2px dashed var(--rand);border-radius:10px;background:white;font-size:14px;font-weight:700;color:var(--grau);cursor:pointer;margin-bottom:16px;transition:all .15s;}
+.neu-rechnung-btn{width:100%;padding:14px;border:2px dashed var(--rand);border-radius:10px;background:white;font-size:14px;font-weight:700;color:var(--grau);cursor:pointer;margin-bottom:16px;}
 .neu-rechnung-btn:hover{border-color:var(--rot);color:var(--rot);}
 .neu-rechnung-form{background:white;border-radius:10px;border:1.5px solid var(--rand);padding:16px;margin-bottom:16px;display:none;}
 .neu-rechnung-form.open{display:block;}
@@ -173,8 +148,6 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
 .form-row-full{margin-bottom:12px;}
 .form-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:5px;}
 .btn-pdf{padding:8px 16px;background:var(--rot);color:white;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;}
-
-/* TOAST & LOADING */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:14px 24px;border-radius:10px;font-weight:700;font-size:14px;z-index:999;box-shadow:0 4px 20px rgba(0,0,0,.2);white-space:nowrap;display:none;}
 .toast.show{display:block;}
 .toast-ok{background:var(--gruen);color:white;}.toast-err{background:var(--rot);color:white;}
@@ -195,12 +168,42 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
       <div><div class="login-title">BauDesk</div><div class="login-sub">Projektmanagement</div></div>
     </div>
     <div class="login-error" id="login-error"></div>
-    <div class="login-field"><label>E-Mail</label>
-      <input type="email" id="l-email" placeholder="name@musa-elektrotechnik.de" autocomplete="username"></div>
-    <div class="login-field"><label>Passwort</label>
-      <input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"></div>
-    <button class="btn-login" id="btn-login" onclick="doLogin()">Anmelden →</button>
-    <div class="login-hint">mueller@musa-elektrotechnik.de · Musa2024!<br>pl@musa-elektrotechnik.de · Musa9999!</div>
+    <div class="login-success" id="login-success" style="display:none;">
+      ✅ Eingeloggt!
+    </div>
+    <div id="login-form">
+      <div id="step-email">
+        <div class="login-field">
+          <label>E-Mail</label>
+          <input type="email" id="l-email" placeholder="name@musa-elektrotechnik.de" autocomplete="username" onkeydown="if(event.key==='Enter')doSendOtp()">
+        </div>
+        <button class="btn-login" id="btn-send-otp" onclick="doSendOtp()">📨 Code senden</button>
+        <div class="login-hint">
+          Kein Passwort nötig.<br>
+          Code kommt per E-Mail → eintippen → fertig.<br><br>
+          <b>Demo:</b> mueller@ · bauer@ · kern@<br>
+          schneider@ · wahl@ · pl@<br>
+          <span style="color:#ccc;">@musa-elektrotechnik.de</span>
+        </div>
+      </div>
+      <div id="step-otp" style="display:none;">
+        <div style="text-align:center;margin-bottom:18px;">
+          <div style="font-size:32px;margin-bottom:8px;">📬</div>
+          <div style="font-size:14px;font-weight:700;">Code eingeben</div>
+          <div style="font-size:12px;color:#888;margin-top:4px;" id="otp-email-hint">—</div>
+        </div>
+        <div class="login-field">
+          <label>6-stelliger Code</label>
+          <input type="text" id="l-otp" placeholder="123456" maxlength="6" inputmode="numeric" pattern="[0-9]*"
+            style="font-size:28px;letter-spacing:.3em;text-align:center;font-weight:700;"
+            onkeydown="if(event.key==='Enter')doVerifyOtp()">
+        </div>
+        <button class="btn-login" id="btn-verify-otp" onclick="doVerifyOtp()">✅ Einloggen</button>
+        <div style="text-align:center;margin-top:12px;">
+          <span style="font-size:12px;color:#aaa;cursor:pointer;" onclick="resetLogin()">← Andere E-Mail</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -221,7 +224,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
     <button class="tab-btn pl-only" onclick="switchTab('rechnungen',this)">📄 Rechnungen</button>
   </div>
 
-  <!-- STEMPELUHR -->
+  <!-- STEMPEL -->
   <div class="view active" id="view-stempel">
     <div class="stempel-widget">
       <div class="stempel-header">
@@ -230,7 +233,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
         <div class="stempel-status aus" id="s-status">Nicht gestempelt</div>
       </div>
       <div class="stempel-body">
-        <div class="stempel-projekt">
+        <div style="margin-bottom:12px;">
           <div class="form-label" style="margin-bottom:6px;">Projekt</div>
           <select id="s-projekt"><option value="">— Projekt auswählen —</option></select>
         </div>
@@ -238,7 +241,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
           <button class="btn-kommen" id="btn-kommen" onclick="stempelKommen()">▶ KOMMEN</button>
           <button class="btn-gehen" id="btn-gehen" onclick="stempelGehen()" disabled>■ GEHEN</button>
         </div>
-        <div class="stempel-info" id="s-info">Projekt auswählen und „KOMMEN" drücken um die Zeit zu erfassen.</div>
+        <div class="stempel-info" id="s-info">Projekt auswählen und „KOMMEN" drücken.</div>
         <div class="stempel-history" id="s-history"></div>
       </div>
     </div>
@@ -265,16 +268,16 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
       <div><div class="zeit-label">Datum</div><input type="date" id="r-datum"></div>
       <div><div class="zeit-label">Stunden</div>
         <input type="number" id="r-stunden" placeholder="8" min="0.5" max="12" step="0.5">
-        <div class="stunden-hint" id="r-stunden-hint" style="display:none;">⏱ Aus Stempeluhr übernommen</div>
+        <div class="stunden-hint" id="r-stunden-hint" style="display:none;">⏱ Aus Stempeluhr</div>
       </div>
     </div>
     <div class="section-title">Tätigkeitsbeschreibung</div>
-    <textarea id="r-beschreibung" placeholder="Was wurde heute gemacht?&#10;Z.B.: Kabelverlegung EG abgeschlossen…"></textarea>
-    <div class="section-title">Fotos von der Baustelle</div>
+    <textarea id="r-beschreibung" placeholder="Was wurde heute gemacht?"></textarea>
+    <div class="section-title">Fotos</div>
     <div class="foto-area" onclick="document.getElementById('foto-input').click()">
       <input type="file" id="foto-input" accept="image/*" multiple capture="environment" onchange="handleFotos(event)">
       <div class="foto-icon">📷</div>
-      <div class="foto-text">Fotos aufnehmen oder auswählen<strong>Kamera öffnen</strong></div>
+      <div class="foto-text">Fotos aufnehmen<strong>Kamera öffnen</strong></div>
     </div>
     <div class="foto-previews" id="foto-previews"></div>
     <button class="btn-primary" id="btn-rapport" onclick="rapportSenden()">✅ Rapport absenden</button>
@@ -298,7 +301,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
       <div class="filter-chip" onclick="setFilter('Haustechnik',this)">Haustechnik</div>
       <div class="filter-chip" onclick="setFilter('Industrie & Gewerbe',this)">Industrie & Gewerbe</div>
     </div>
-    <div id="projekt-list"><div class="loading"><div class="spinner"></div><br>Lade Projekte…</div></div>
+    <div id="projekt-list"><div class="loading"><div class="spinner"></div><br>Lade…</div></div>
   </div>
   </div>
 
@@ -306,8 +309,8 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
   <div class="view" id="view-auswertung">
   <div class="auswertung-wrap">
     <div class="period-row">
-      <div class="period-btn active" onclick="setPeriod('woche',this)">Diese Woche</div>
-      <div class="period-btn" onclick="setPeriod('monat',this)">Dieser Monat</div>
+      <div class="period-btn active" onclick="setPeriod('woche',this)">Woche</div>
+      <div class="period-btn" onclick="setPeriod('monat',this)">Monat</div>
       <div class="period-btn" onclick="setPeriod('gesamt',this)">Gesamt</div>
     </div>
     <div id="auswertung-gesamt"></div>
@@ -330,7 +333,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
         <div><div class="form-label">Stunden</div><input type="number" id="rneu-stunden" placeholder="0" step="0.5"></div>
         <div><div class="form-label">Stundensatz €</div><input type="number" id="rneu-satz" value="85" step="5"></div>
       </div>
-      <div class="form-row-full"><div class="form-label">Notiz</div><textarea id="rneu-notiz" style="min-height:60px;" placeholder="Leistungszeitraum, Hinweise…"></textarea></div>
+      <div class="form-row-full"><div class="form-label">Notiz</div><textarea id="rneu-notiz" style="min-height:60px;" placeholder="Leistungszeitraum…"></textarea></div>
       <button class="btn-primary" style="margin-top:10px;" onclick="rechnungSpeichern()">💾 Rechnung anlegen</button>
     </div>
     <div id="rechnung-list"><div class="loading"><div class="spinner"></div><br>Lade…</div></div>
@@ -345,26 +348,50 @@ textarea{min-height:80px;resize:vertical;line-height:1.5;}
 const SB_URL='https://ysqzdqazcgyuzdorauiq.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzcXpkcWF6Y2d5dXpkb3JhdWlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5ODM0NzcsImV4cCI6MjA5NTU1OTQ3N30.u5cbSVniUl5Zvlf2rdpnjtvDyKvv9csmPwvdtnEwWzE';
 const {createClient}=supabase;
-const db=createClient(SB_URL,SB_KEY);
+const db=createClient(SB_URL,SB_KEY,{
+  auth:{redirectTo: window.location.origin+window.location.pathname}
+});
 
 let currentUser=null,currentMa=null,projekte=[],mitarbeiter=[];
 let selectedLeistung=null,fotoData=[];
 let currentFilter='alle',currentPeriod='woche';
-let uhrzeitInterval=null,stempelInterval=null;
-let aktiverStempel=null; // { id, ein: Date }
+let uhrzeitInterval=null,stempelInterval=null,aktiverStempel=null;
 
-// ── LOGIN ──
-async function doLogin(){
-  const email=document.getElementById('l-email').value.trim();
-  const pass=document.getElementById('l-pass').value;
+// ── OTP LOGIN ──
+async function doSendOtp(){
+  const email=document.getElementById('l-email').value.trim().toLowerCase();
   const errEl=document.getElementById('login-error');
-  const btn=document.getElementById('btn-login');
   errEl.style.display='none';
-  btn.disabled=true;btn.textContent='⏳ Anmelden…';
-  const {data,error}=await db.auth.signInWithPassword({email,password:pass});
-  if(error){errEl.textContent='E-Mail oder Passwort falsch.';errEl.style.display='block';btn.disabled=false;btn.textContent='Anmelden →';return;}
-  await startSession(data.user);
-  btn.disabled=false;btn.textContent='Anmelden →';
+  if(!email){errEl.textContent='Bitte E-Mail eingeben.';errEl.style.display='block';return;}
+  const btn=document.getElementById('btn-send-otp');
+  btn.disabled=true;btn.textContent='⏳ Sende Code…';
+  const {error}=await db.auth.signInWithOtp({email,options:{shouldCreateUser:false}});
+  if(error){errEl.textContent='Fehler: '+error.message;errEl.style.display='block';btn.disabled=false;btn.textContent='📨 Code senden';return;}
+  document.getElementById('step-email').style.display='none';
+  document.getElementById('step-otp').style.display='block';
+  document.getElementById('otp-email-hint').textContent='Code gesendet an: '+email;
+  document.getElementById('l-otp').focus();
+  btn.disabled=false;btn.textContent='📨 Code senden';
+}
+
+async function doVerifyOtp(){
+  const email=document.getElementById('l-email').value.trim().toLowerCase();
+  const token=document.getElementById('l-otp').value.trim();
+  const errEl=document.getElementById('login-error');
+  errEl.style.display='none';
+  if(token.length!==6){errEl.textContent='Bitte 6-stelligen Code eingeben.';errEl.style.display='block';return;}
+  const btn=document.getElementById('btn-verify-otp');
+  btn.disabled=true;btn.textContent='⏳ Prüfe Code…';
+  const {data,error}=await db.auth.verifyOtp({email,token,type:'email'});
+  if(error){errEl.textContent='Code falsch oder abgelaufen.';errEl.style.display='block';btn.disabled=false;btn.textContent='✅ Einloggen';return;}
+  btn.disabled=false;btn.textContent='✅ Einloggen';
+}
+
+function resetLogin(){
+  document.getElementById('step-email').style.display='block';
+  document.getElementById('step-otp').style.display='none';
+  document.getElementById('l-otp').value='';
+  document.getElementById('login-error').style.display='none';
 }
 
 async function startSession(user){
@@ -375,12 +402,9 @@ async function startSession(user){
   document.getElementById('app').style.display='block';
   document.getElementById('user-name').textContent=ma?.name||user.email;
   document.getElementById('user-rolle').textContent=(ma?.rolle||'')+'  ·  Abmelden';
-  // PL-Only Tabs
-  if(ma?.rolle==='monteur'){
-    document.querySelectorAll('.pl-only').forEach(t=>t.style.display='none');
-  }
+  if(ma?.rolle==='monteur') document.querySelectorAll('.pl-only').forEach(t=>t.style.display='none');
   startUhr();
-  init();
+  await init();
 }
 
 async function doLogout(){
@@ -389,25 +413,26 @@ async function doLogout(){
   currentUser=null;currentMa=null;aktiverStempel=null;
   document.getElementById('app').style.display='none';
   document.getElementById('login-screen').style.display='flex';
-  document.getElementById('l-pass').value='';
+  document.getElementById('step-email').style.display='block';
+  document.getElementById('step-otp').style.display='none';
+  document.getElementById('l-email').value='';
+  document.getElementById('l-otp').value='';
 }
 
-db.auth.getSession().then(async({data:{session}})=>{
-  if(session) await startSession(session.user);
+// Session beim Laden prüfen (auch nach Magic Link Redirect)
+db.auth.onAuthStateChange(async(event,session)=>{
+  if(session&&!currentUser) await startSession(session.user);
 });
 
-// ── UHRZEIT LAUFEN LASSEN ──
+// ── UHR ──
 function startUhr(){
   clearInterval(uhrzeitInterval);
   function tick(){
     const now=new Date();
-    document.getElementById('s-uhr').textContent=
-      now.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-    document.getElementById('s-datum').textContent=
-      now.toLocaleDateString('de-DE',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
+    document.getElementById('s-uhr').textContent=now.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    document.getElementById('s-datum').textContent=now.toLocaleDateString('de-DE',{weekday:'long',day:'2-digit',month:'long'});
   }
-  tick();
-  uhrzeitInterval=setInterval(tick,1000);
+  tick();uhrzeitInterval=setInterval(tick,1000);
 }
 
 // ── INIT ──
@@ -420,23 +445,18 @@ async function init(){
   ]);
   projekte=p||[];mitarbeiter=m||[];
   ['r-projekt','s-projekt','rneu-projekt'].forEach(id=>{
-    const sel=document.getElementById(id);
-    if(!sel)return;
+    const sel=document.getElementById(id);if(!sel)return;
     sel.innerHTML='<option value="">— Projekt auswählen —</option>';
     projekte.forEach(pr=>{const o=document.createElement('option');o.value=pr.id;o.textContent=pr.name;sel.appendChild(o);});
   });
   await ladeAktivenStempel();
-  renderDashboard();
-  renderRechnungen();
-  renderAuswertung();
+  renderDashboard();renderRechnungen();renderAuswertung();
 }
 
-// ── TABS ──
 function switchTab(tab,btn){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('view-'+tab).classList.add('active');
-  btn.classList.add('active');
+  document.getElementById('view-'+tab).classList.add('active');btn.classList.add('active');
   if(tab==='dashboard')renderDashboard();
   if(tab==='auswertung')renderAuswertung();
   if(tab==='rechnungen')renderRechnungen();
@@ -445,13 +465,8 @@ function switchTab(tab,btn){
 // ── STEMPELUHR ──
 async function ladeAktivenStempel(){
   if(!currentMa)return;
-  const {data}=await db.from('musa_stempeluhr')
-    .select('*').eq('mitarbeiter_id',currentMa.id)
-    .is('gestempelt_aus',null).order('gestempelt_ein',{ascending:false}).limit(1);
-  if(data&&data.length>0){
-    aktiverStempel={id:data[0].id,ein:new Date(data[0].gestempelt_ein),projektId:data[0].projekt_id};
-    stempelUIAktiv();
-  }
+  const {data}=await db.from('musa_stempeluhr').select('*').eq('mitarbeiter_id',currentMa.id).is('gestempelt_aus',null).order('gestempelt_ein',{ascending:false}).limit(1);
+  if(data&&data.length>0){aktiverStempel={id:data[0].id,ein:new Date(data[0].gestempelt_ein),projektId:data[0].projekt_id};stempelUIAktiv();}
   ladeStempelHistory();
 }
 
@@ -460,173 +475,107 @@ function stempelUIAktiv(){
   document.getElementById('btn-gehen').disabled=false;
   document.getElementById('s-status').className='stempel-status ein';
   document.getElementById('s-status').textContent='Eingestempelt';
-  if(aktiverStempel.projektId){
-    const p=projekte.find(x=>x.id===aktiverStempel.projektId);
-    if(p)document.getElementById('s-projekt').value=aktiverStempel.projektId;
-  }
+  if(aktiverStempel.projektId) document.getElementById('s-projekt').value=aktiverStempel.projektId;
   clearInterval(stempelInterval);
   stempelInterval=setInterval(()=>{
     if(!aktiverStempel)return;
     const diff=Math.floor((Date.now()-aktiverStempel.ein.getTime())/1000);
     const h=Math.floor(diff/3600),m=Math.floor((diff%3600)/60),s=diff%60;
-    // Zeige Laufzeit in Info
-    document.getElementById('s-info').innerHTML=
-      `⏱ Eingestempelt seit <strong>${aktiverStempel.ein.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}</strong><br>
-      Bisher: <strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}</strong>`;
+    document.getElementById('s-info').innerHTML=`⏱ Eingestempelt seit <strong>${aktiverStempel.ein.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}</strong><br>Bisher: <strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}</strong>`;
   },1000);
 }
 
 function stempelUIInaktiv(){
-  clearInterval(stempelInterval);
-  aktiverStempel=null;
+  clearInterval(stempelInterval);aktiverStempel=null;
   document.getElementById('btn-kommen').disabled=false;
   document.getElementById('btn-gehen').disabled=true;
   document.getElementById('s-status').className='stempel-status aus';
   document.getElementById('s-status').textContent='Nicht gestempelt';
-  document.getElementById('s-info').textContent='Projekt auswählen und „KOMMEN" drücken um die Zeit zu erfassen.';
+  document.getElementById('s-info').textContent='Projekt auswählen und „KOMMEN" drücken.';
 }
 
 async function stempelKommen(){
   const projektId=document.getElementById('s-projekt').value;
   if(!projektId){showErr('Bitte zuerst Projekt auswählen.');return;}
-  if(!currentMa){showErr('Nicht eingeloggt.');return;}
-  const {data,error}=await db.from('musa_stempeluhr').insert({
-    mitarbeiter_id:currentMa.id,
-    projekt_id:projektId,
-    gestempelt_ein:new Date().toISOString()
-  }).select().single();
+  const {data,error}=await db.from('musa_stempeluhr').insert({mitarbeiter_id:currentMa.id,projekt_id:projektId,gestempelt_ein:new Date().toISOString()}).select().single();
   if(error){showErr('Fehler: '+error.message);return;}
   aktiverStempel={id:data.id,ein:new Date(data.gestempelt_ein),projektId};
-  stempelUIAktiv();
-  showOk('✅ Eingestempelt!');
-  ladeStempelHistory();
+  stempelUIAktiv();showOk('✅ Eingestempelt!');ladeStempelHistory();
 }
 
 async function stempelGehen(){
-  if(!aktiverStempel){return;}
+  if(!aktiverStempel)return;
   const jetzt=new Date();
-  const {error}=await db.from('musa_stempeluhr')
-    .update({gestempelt_aus:jetzt.toISOString()})
-    .eq('id',aktiverStempel.id);
+  const {error}=await db.from('musa_stempeluhr').update({gestempelt_aus:jetzt.toISOString()}).eq('id',aktiverStempel.id);
   if(error){showErr('Fehler: '+error.message);return;}
-  // Stunden für Rapport vorausfüllen
   const diffH=((jetzt-aktiverStempel.ein)/3600000).toFixed(1);
   document.getElementById('r-stunden').value=diffH;
   document.getElementById('r-datum').value=jetzt.toISOString().split('T')[0];
   document.getElementById('r-stunden-hint').style.display='block';
   if(aktiverStempel.projektId) document.getElementById('r-projekt').value=aktiverStempel.projektId;
-  stempelUIInaktiv();
-  showOk('✅ Ausgestempelt — Rapport vorausgefüllt!');
-  ladeStempelHistory();
+  stempelUIInaktiv();showOk('✅ Ausgestempelt — Rapport vorausgefüllt!');ladeStempelHistory();
 }
 
 async function ladeStempelHistory(){
   if(!currentMa)return;
-  const {data}=await db.from('musa_stempeluhr')
-    .select('*,musa_projekte(name)')
-    .eq('mitarbeiter_id',currentMa.id)
-    .not('gestempelt_aus','is',null)
-    .order('gestempelt_ein',{ascending:false}).limit(5);
+  const {data}=await db.from('musa_stempeluhr').select('*,musa_projekte(name)').eq('mitarbeiter_id',currentMa.id).not('gestempelt_aus','is',null).order('gestempelt_ein',{ascending:false}).limit(5);
   const el=document.getElementById('s-history');
   if(!data||!data.length){el.innerHTML='';return;}
-  el.innerHTML=`<div class="stempel-history-title">Letzte Einträge</div>`+
-    data.map(r=>{
-      const ein=new Date(r.gestempelt_ein);
-      const aus=new Date(r.gestempelt_aus);
-      const std=((aus-ein)/3600000).toFixed(1);
-      const datum=ein.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'});
-      const zeitspan=ein.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' – '+aus.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
-      const pName=r.musa_projekte?.name||'—';
-      return `<div class="stempel-row">
-        <div><div style="font-weight:600;font-size:13px;">${pName}</div>
-             <div class="stempel-row-datum">${datum} · ${zeitspan}</div></div>
-        <div class="stempel-row-std">${std} Std.</div>
-      </div>`;
-    }).join('');
+  el.innerHTML=`<div class="stempel-history-title">Letzte Einträge</div>`+data.map(r=>{
+    const ein=new Date(r.gestempelt_ein),aus=new Date(r.gestempelt_aus);
+    const std=((aus-ein)/3600000).toFixed(1);
+    const datum=ein.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'});
+    const zeit=ein.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' – '+aus.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+    return `<div class="stempel-row"><div><div style="font-weight:600;font-size:13px;">${r.musa_projekte?.name||'—'}</div><div class="stempel-row-datum">${datum} · ${zeit}</div></div><div class="stempel-row-std">${std} Std.</div></div>`;
+  }).join('');
 }
 
 // ── RAPPORT ──
-function toggleChip(el){
-  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');selectedLeistung=el.dataset.val;
-}
-
+function toggleChip(el){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');selectedLeistung=el.dataset.val;}
 function handleFotos(e){
-  const files=Array.from(e.target.files);
-  const pre=document.getElementById('foto-previews');
-  pre.innerHTML='';fotoData=[];
+  const files=Array.from(e.target.files);const pre=document.getElementById('foto-previews');pre.innerHTML='';fotoData=[];
   files.slice(0,6).forEach(file=>{
     const reader=new FileReader();
-    reader.onload=ev=>{
-      const img=new Image();
-      img.onload=()=>{
-        const canvas=document.createElement('canvas');
-        const max=600;let w=img.width,h=img.height;
-        if(w>max){h=h*(max/w);w=max;}
-        canvas.width=w;canvas.height=h;
-        canvas.getContext('2d').drawImage(img,0,0,w,h);
-        const data=canvas.toDataURL('image/jpeg',.7);
-        fotoData.push(data);
-        const th=document.createElement('img');th.src=data;th.className='foto-thumb';
-        pre.appendChild(th);
-      };img.src=ev.target.result;
-    };reader.readAsDataURL(file);
+    reader.onload=ev=>{const img=new Image();img.onload=()=>{const canvas=document.createElement('canvas');const max=600;let w=img.width,h=img.height;if(w>max){h=h*(max/w);w=max;}canvas.width=w;canvas.height=h;canvas.getContext('2d').drawImage(img,0,0,w,h);const data=canvas.toDataURL('image/jpeg',.7);fotoData.push(data);const th=document.createElement('img');th.src=data;th.className='foto-thumb';pre.appendChild(th);};img.src=ev.target.result;};reader.readAsDataURL(file);
   });
 }
-
 async function rapportSenden(){
   const projektId=document.getElementById('r-projekt').value;
   const stunden=parseFloat(document.getElementById('r-stunden').value);
   const beschreibung=document.getElementById('r-beschreibung').value.trim();
   const datum=document.getElementById('r-datum').value;
   if(!projektId||!stunden||!beschreibung||!selectedLeistung){showErr('Bitte alle Felder ausfüllen.');return;}
-  if(!currentMa){showErr('Nicht eingeloggt.');return;}
-  const btn=document.getElementById('btn-rapport');
-  btn.disabled=true;btn.textContent='⏳ Wird gesendet…';
-  const {error}=await db.from('musa_rapporte').insert({
-    projekt_id:projektId,mitarbeiter_id:currentMa.id,
-    datum,stunden,leistung:selectedLeistung,beschreibung,fotos:fotoData.slice(0,3)
-  });
+  const btn=document.getElementById('btn-rapport');btn.disabled=true;btn.textContent='⏳ Sende…';
+  const {error}=await db.from('musa_rapporte').insert({projekt_id:projektId,mitarbeiter_id:currentMa.id,datum,stunden,leistung:selectedLeistung,beschreibung,fotos:fotoData.slice(0,3)});
   if(error){showErr('Fehler: '+error.message);}
   else{
-    document.getElementById('r-projekt').value='';
-    document.getElementById('r-stunden').value='';
-    document.getElementById('r-beschreibung').value='';
+    document.getElementById('r-projekt').value='';document.getElementById('r-stunden').value='';document.getElementById('r-beschreibung').value='';
     document.getElementById('r-stunden-hint').style.display='none';
     document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
-    document.getElementById('foto-previews').innerHTML='';
-    fotoData=[];selectedLeistung=null;
+    document.getElementById('foto-previews').innerHTML='';fotoData=[];selectedLeistung=null;
     document.getElementById('r-datum').value=new Date().toISOString().split('T')[0];
-    showOk('✅ Rapport erfolgreich übermittelt!');
+    showOk('✅ Rapport übermittelt!');
   }
   btn.disabled=false;btn.textContent='✅ Rapport absenden';
 }
 
 // ── DASHBOARD ──
-function setFilter(val,el){
-  currentFilter=val;
-  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');renderDashboard();
-}
-
+function setFilter(val,el){currentFilter=val;document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderDashboard();}
 async function renderDashboard(){
   const listEl=document.getElementById('projekt-list');
   listEl.innerHTML='<div class="loading"><div class="spinner"></div><br>Lade…</div>';
   try{
     const heute=new Date().toISOString().split('T')[0];
-    const {data:rapporte}=await db.from('musa_rapporte')
-      .select('*,musa_mitarbeiter(name),musa_projekte(name)').order('created_at',{ascending:false});
+    const {data:rapporte}=await db.from('musa_rapporte').select('*,musa_mitarbeiter(name),musa_projekte(name)').order('created_at',{ascending:false});
     const rr=rapporte||[];
     document.getElementById('kpi-projekte').textContent=projekte.length;
     document.getElementById('kpi-heute').textContent=rr.filter(r=>r.datum===heute).length;
     document.getElementById('kpi-stunden').textContent=rr.reduce((s,r)=>s+(r.stunden||0),0).toFixed(1).replace('.0','');
     document.getElementById('kpi-offen').textContent=projekte.filter(p=>p.status==='aktiv'||p.status==='offen').length;
-
     let gefiltert=projekte;
     if(currentFilter!=='alle') gefiltert=projekte.filter(p=>p.leistungen&&p.leistungen.includes(currentFilter));
     listEl.innerHTML='';
     if(!gefiltert.length){listEl.innerHTML='<div class="empty-state"><div class="big">🔍</div><p>Keine Projekte.</p></div>';return;}
-
     const sm={offen:['status-offen','Offen'],aktiv:['status-aktiv','In Arbeit'],abnahme:['status-abnahme','Abnahme'],abgerechnet:['status-abgerechnet','Abgerechnet'],abgeschlossen:['status-abgerechnet','Abgeschlossen']};
     gefiltert.forEach(p=>{
       const pR=rr.filter(r=>r.projekt_id===p.id);
@@ -634,223 +583,81 @@ async function renderDashboard(){
       const [sc,sl]=sm[p.status]||['status-offen',p.status];
       const tags=(p.leistungen||[]).map(l=>`<span class="leistung-tag">${l}</span>`).join('');
       const wert=p.auftragswert?'· '+p.auftragswert.toLocaleString('de-DE',{style:'currency',currency:'EUR'}):'';
-      const rapHTML=pR.length===0?'<div style="padding:14px;color:#aaa;font-size:13px;text-align:center;">Noch keine Rapporte</div>':
-        pR.map(r=>{
-          const ma=r.musa_mitarbeiter?.name||'—';
-          const d=new Date(r.created_at);
-          const ds=d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
-          const th=r.fotos&&r.fotos.length>0?`<img src="${r.fotos[0]}" class="rapport-thumb">`:`<div class="rapport-no-thumb">📋</div>`;
-          return `<div class="rapport-entry">${th}<div class="rapport-details">
-            <div class="rapport-kopf"><div class="rapport-mitarbeiter">${ma}</div><div class="rapport-zeit">${ds}</div></div>
-            <div class="rapport-text">${r.beschreibung}</div>
-            <div class="rapport-stunden">⏱ ${r.stunden} Std. · ${r.leistung}</div>
-          </div></div>`;
-        }).join('');
+      const rapHTML=pR.length===0?'<div style="padding:14px;color:#aaa;font-size:13px;text-align:center;">Noch keine Rapporte</div>':pR.map(r=>{
+        const ma=r.musa_mitarbeiter?.name||'—';
+        const d=new Date(r.created_at);
+        const ds=d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+        const th=r.fotos&&r.fotos.length>0?`<img src="${r.fotos[0]}" class="rapport-thumb">`:`<div class="rapport-no-thumb">📋</div>`;
+        return `<div class="rapport-entry">${th}<div class="rapport-details"><div class="rapport-kopf"><div class="rapport-mitarbeiter">${ma}</div><div class="rapport-zeit">${ds}</div></div><div class="rapport-text">${r.beschreibung}</div><div class="rapport-stunden">⏱ ${r.stunden} Std. · ${r.leistung}</div></div></div>`;
+      }).join('');
       const card=document.createElement('div');card.className='projekt-card';
-      card.innerHTML=`
-        <div class="projekt-header" onclick="toggleCard(this)">
-          <div class="projekt-info">
-            <div class="projekt-name">${p.name}</div>
-            <div class="projekt-meta">${p.kunde} ${wert}</div>
-            <div style="margin-top:4px;">${tags}</div>
-          </div>
-          <span class="status-badge ${sc}">${sl}</span>
-          <span class="toggle-icon">▾</span>
-        </div>
-        <div class="stunden-bar">
-          <div><div class="stunden-info">Erfasste Stunden</div><div class="stunden-summe">${sumH>0?sumH.toFixed(1).replace('.0','')+'&nbsp;Std.':'—'}</div></div>
-          <button class="btn-rechnung" onclick="event.stopPropagation();openRechnungFor('${p.id}')">📄 Rechnung</button>
-        </div>
-        <div class="rapport-list" id="rl-${p.id}">${rapHTML}</div>`;
+      card.innerHTML=`<div class="projekt-header" onclick="toggleCard(this)"><div class="projekt-info"><div class="projekt-name">${p.name}</div><div class="projekt-meta">${p.kunde} ${wert}</div><div style="margin-top:4px;">${tags}</div></div><span class="status-badge ${sc}">${sl}</span><span class="toggle-icon">▾</span></div><div class="stunden-bar"><div><div class="stunden-info">Erfasste Stunden</div><div class="stunden-summe">${sumH>0?sumH.toFixed(1).replace('.0','')+'&nbsp;Std.':'—'}</div></div><button class="btn-rechnung" onclick="event.stopPropagation();openRechnungFor('${p.id}')">📄 Rechnung</button></div><div class="rapport-list" id="rl-${p.id}">${rapHTML}</div>`;
       listEl.appendChild(card);
     });
   }catch(e){listEl.innerHTML=`<div class="empty-state"><div class="big">⚠️</div><p>${e.message}</p></div>`;}
 }
-
-function toggleCard(h){
-  const card=h.closest('.projekt-card');
-  const list=card.querySelector('.rapport-list');
-  const open=list.classList.contains('open');
-  document.querySelectorAll('.rapport-list').forEach(r=>r.classList.remove('open'));
-  document.querySelectorAll('.projekt-card').forEach(c=>c.classList.remove('open'));
-  if(!open){list.classList.add('open');card.classList.add('open');}
-}
-
-function openRechnungFor(id){
-  document.querySelector('.pl-only:last-child').click();
-  setTimeout(()=>{document.getElementById('rneu-projekt').value=id;document.getElementById('neu-form').classList.add('open');},100);
-}
+function toggleCard(h){const card=h.closest('.projekt-card');const list=card.querySelector('.rapport-list');const open=list.classList.contains('open');document.querySelectorAll('.rapport-list').forEach(r=>r.classList.remove('open'));document.querySelectorAll('.projekt-card').forEach(c=>c.classList.remove('open'));if(!open){list.classList.add('open');card.classList.add('open');}}
+function openRechnungFor(id){document.querySelector('.pl-only:last-child').click();setTimeout(()=>{document.getElementById('rneu-projekt').value=id;document.getElementById('neu-form').classList.add('open');},100);}
 
 // ── AUSWERTUNG ──
-function setPeriod(p,el){
-  currentPeriod=p;
-  document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');renderAuswertung();
-}
-
+function setPeriod(p,el){currentPeriod=p;document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderAuswertung();}
 async function renderAuswertung(){
-  const listEl=document.getElementById('auswertung-list');
-  const gesamtEl=document.getElementById('auswertung-gesamt');
+  const listEl=document.getElementById('auswertung-list');const gesamtEl=document.getElementById('auswertung-gesamt');
   listEl.innerHTML='<div class="loading"><div class="spinner"></div><br>Lade…</div>';
-
-  // Datumsrange berechnen
-  const heute=new Date();
-  let vonDatum;
-  if(currentPeriod==='woche'){
-    const mon=new Date(heute);mon.setDate(heute.getDate()-heute.getDay()+1);
-    vonDatum=mon.toISOString().split('T')[0];
-  } else if(currentPeriod==='monat'){
-    vonDatum=new Date(heute.getFullYear(),heute.getMonth(),1).toISOString().split('T')[0];
-  } else {
-    vonDatum='2000-01-01';
-  }
-
-  const {data:rapporte}=await db.from('musa_rapporte')
-    .select('*,musa_mitarbeiter(name,rolle)')
-    .gte('datum',vonDatum)
-    .order('datum',{ascending:false});
-
+  const heute=new Date();let vonDatum;
+  if(currentPeriod==='woche'){const mon=new Date(heute);mon.setDate(heute.getDate()-heute.getDay()+1);vonDatum=mon.toISOString().split('T')[0];}
+  else if(currentPeriod==='monat'){vonDatum=new Date(heute.getFullYear(),heute.getMonth(),1).toISOString().split('T')[0];}
+  else{vonDatum='2000-01-01';}
+  const {data:rapporte}=await db.from('musa_rapporte').select('*,musa_mitarbeiter(name,rolle)').gte('datum',vonDatum).order('datum',{ascending:false});
   const rr=rapporte||[];
-  const gesamtStunden=rr.reduce((s,r)=>s+(r.stunden||0),0);
-
-  // Gesamt-Card
-  gesamtEl.innerHTML=`<div class="gesamt-card">
-    <div><div class="gesamt-lbl">${currentPeriod==='woche'?'Diese Woche':currentPeriod==='monat'?'Dieser Monat':'Gesamt'}</div>
-         <div class="gesamt-val">${gesamtStunden.toFixed(1)} Std.</div></div>
-    <div style="text-align:right;">
-      <div class="gesamt-lbl">Rapporte</div>
-      <div style="font-size:24px;font-weight:800;color:white;">${rr.length}</div>
-    </div>
-  </div>`;
-
-  // Pro Mitarbeiter
+  const gesamtH=rr.reduce((s,r)=>s+(r.stunden||0),0);
+  gesamtEl.innerHTML=`<div class="gesamt-card"><div><div style="font-size:12px;color:#888;">${currentPeriod==='woche'?'Diese Woche':currentPeriod==='monat'?'Dieser Monat':'Gesamt'}</div><div class="gesamt-val">${gesamtH.toFixed(1)} Std.</div></div><div style="text-align:right;"><div style="font-size:12px;color:#888;">Rapporte</div><div style="font-size:24px;font-weight:800;">${rr.length}</div></div></div>`;
   const maMap={};
-  rr.forEach(r=>{
-    const id=r.mitarbeiter_id;
-    if(!maMap[id]) maMap[id]={name:r.musa_mitarbeiter?.name||'—',rolle:r.musa_mitarbeiter?.rolle||'',stunden:0,rapporte:0,tage:new Set()};
-    maMap[id].stunden+=(r.stunden||0);
-    maMap[id].rapporte++;
-    maMap[id].tage.add(r.datum);
-  });
-
+  rr.forEach(r=>{const id=r.mitarbeiter_id;if(!maMap[id])maMap[id]={name:r.musa_mitarbeiter?.name||'—',rolle:r.musa_mitarbeiter?.rolle||'',stunden:0,rapporte:0,tage:new Set()};maMap[id].stunden+=(r.stunden||0);maMap[id].rapporte++;maMap[id].tage.add(r.datum);});
   const maArr=Object.values(maMap).sort((a,b)=>b.stunden-a.stunden);
   const maxH=maArr.length>0?maArr[0].stunden:1;
-
-  if(!maArr.length){
-    listEl.innerHTML='<div class="empty-state"><div class="big">📊</div><p>Keine Daten im gewählten Zeitraum.</p></div>';
-    return;
-  }
-
+  if(!maArr.length){listEl.innerHTML='<div class="empty-state"><div class="big">📊</div><p>Keine Daten.</p></div>';return;}
   listEl.innerHTML=maArr.map(ma=>{
     const pct=Math.round((ma.stunden/maxH)*100);
-    const rolleLabel={monteur:'Monteur',bauleiter:'Bauleiter',projektleiter:'Projektleiter',admin:'Admin'}[ma.rolle]||ma.rolle;
-    return `<div class="ma-card">
-      <div class="ma-card-header">
-        <div><div class="ma-name">${ma.name}</div><span class="ma-rolle-tag">${rolleLabel}</span></div>
-        <div style="text-align:right;"><div class="ma-stunden-gross">${ma.stunden.toFixed(1)}</div><div class="ma-stunden-label">Stunden</div></div>
-      </div>
-      <div class="bar-wrap"><div class="bar-fill" style="width:${pct}%"></div></div>
-      <div class="ma-details">
-        <div class="ma-detail-cell"><div class="ma-detail-val">${ma.rapporte}</div><div class="ma-detail-lbl">Rapporte</div></div>
-        <div class="ma-detail-cell"><div class="ma-detail-val">${ma.tage.size}</div><div class="ma-detail-lbl">Einsatztage</div></div>
-        <div class="ma-detail-cell"><div class="ma-detail-val">${ma.tage.size>0?(ma.stunden/ma.tage.size).toFixed(1):0}</div><div class="ma-detail-lbl">Ø Std./Tag</div></div>
-      </div>
-    </div>`;
+    const rl={monteur:'Monteur',bauleiter:'Bauleiter',projektleiter:'Projektleiter',admin:'Admin'}[ma.rolle]||ma.rolle;
+    return `<div class="ma-card"><div class="ma-card-header"><div><div class="ma-name">${ma.name}</div><span class="ma-rolle-tag">${rl}</span></div><div style="text-align:right;"><div class="ma-stunden-gross">${ma.stunden.toFixed(1)}</div><div class="ma-stunden-label">Stunden</div></div></div><div class="bar-wrap"><div class="bar-fill" style="width:${pct}%"></div></div><div class="ma-details"><div class="ma-detail-cell"><div class="ma-detail-val">${ma.rapporte}</div><div class="ma-detail-lbl">Rapporte</div></div><div class="ma-detail-cell"><div class="ma-detail-val">${ma.tage.size}</div><div class="ma-detail-lbl">Einsatztage</div></div><div class="ma-detail-cell"><div class="ma-detail-val">${ma.tage.size>0?(ma.stunden/ma.tage.size).toFixed(1):0}</div><div class="ma-detail-lbl">Ø Std./Tag</div></div></div></div>`;
   }).join('');
 }
 
 // ── RECHNUNGEN ──
 function toggleNeuForm(){document.getElementById('neu-form').classList.toggle('open');}
-
 async function rechnungSpeichern(){
-  const projektId=document.getElementById('rneu-projekt').value;
-  const typ=document.getElementById('rneu-typ').value;
-  const datum=document.getElementById('rneu-datum').value;
-  const stunden=parseFloat(document.getElementById('rneu-stunden').value)||0;
-  const satz=parseFloat(document.getElementById('rneu-satz').value)||85;
-  const notiz=document.getElementById('rneu-notiz').value;
+  const projektId=document.getElementById('rneu-projekt').value;const typ=document.getElementById('rneu-typ').value;const datum=document.getElementById('rneu-datum').value;
+  const stunden=parseFloat(document.getElementById('rneu-stunden').value)||0;const satz=parseFloat(document.getElementById('rneu-satz').value)||85;const notiz=document.getElementById('rneu-notiz').value;
   if(!projektId||!datum){showErr('Projekt und Datum ausfüllen.');return;}
-  const netto=stunden*satz,brutto=netto*1.19;
-  const nr='MUSA-'+new Date().getFullYear()+'-'+String(Date.now()).slice(-4);
+  const netto=stunden*satz,brutto=netto*1.19;const nr='MUSA-'+new Date().getFullYear()+'-'+String(Date.now()).slice(-4);
   const {error}=await db.from('musa_rechnungen').insert({projekt_id:projektId,rechnungsnummer:nr,typ,datum,stunden_gesamt:stunden,stundensatz:satz,betrag_netto:netto,betrag_brutto:brutto,status:'entwurf',notiz});
   if(error){showErr('Fehler: '+error.message);return;}
-  document.getElementById('neu-form').classList.remove('open');
-  showOk('✅ Rechnung angelegt!');renderRechnungen();
+  document.getElementById('neu-form').classList.remove('open');showOk('✅ Rechnung angelegt!');renderRechnungen();
 }
-
 async function renderRechnungen(){
-  const listEl=document.getElementById('rechnung-list');
-  listEl.innerHTML='<div class="loading"><div class="spinner"></div><br>Lade…</div>';
-  const {data:rechnungen}=await db.from('musa_rechnungen').select('*,musa_projekte(name)').order('created_at',{ascending:false});
-  if(!rechnungen||!rechnungen.length){listEl.innerHTML='<div class="empty-state"><div class="big">📄</div><p>Noch keine Rechnungen.</p></div>';return;}
+  const listEl=document.getElementById('rechnung-list');listEl.innerHTML='<div class="loading"><div class="spinner"></div><br>Lade…</div>';
+  const {data:r}=await db.from('musa_rechnungen').select('*,musa_projekte(name)').order('created_at',{ascending:false});
+  if(!r||!r.length){listEl.innerHTML='<div class="empty-state"><div class="big">📄</div><p>Noch keine Rechnungen.</p></div>';return;}
   const sm={entwurf:['r-entwurf','Entwurf'],gesendet:['r-gesendet','Gesendet'],bezahlt:['r-bezahlt','Bezahlt']};
-  listEl.innerHTML=rechnungen.map(r=>{
-    const [sc,sl]=sm[r.status]||['r-entwurf',r.status];
-    const pn=r.musa_projekte?.name||'—';
-    const brutto=r.betrag_brutto?r.betrag_brutto.toLocaleString('de-DE',{style:'currency',currency:'EUR'}):'—';
-    const netto=r.betrag_netto?r.betrag_netto.toLocaleString('de-DE',{style:'currency',currency:'EUR'}):'—';
-    return `<div class="rechnung-card">
-      <div class="rechnung-header">
-        <div><div class="rechnung-nr">${r.rechnungsnummer}</div>
-             <div class="rechnung-projekt">${pn} · ${r.typ==='teilrechnung'?'Teilrechnung':'Schlussrechnung'}</div>
-             <div class="rechnung-projekt">${r.datum}</div></div>
-        <div><div class="rechnung-betrag">${brutto}</div><div class="rechnung-sub">inkl. MwSt. · Netto ${netto}</div></div>
-      </div>
-      <div class="rechnung-footer">
-        <span class="r-status ${sc}">${sl}</span>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          ${r.status==='entwurf'?`<button class="btn-rechnung" onclick="rStatus('${r.id}','gesendet')">📤 Gesendet</button>`:''}
-          ${r.status==='gesendet'?`<button class="btn-rechnung" onclick="rStatus('${r.id}','bezahlt')" style="background:var(--gruen)">✅ Bezahlt</button>`:''}
-          <button class="btn-pdf" onclick='pdfErstellen(${JSON.stringify(r).replace(/'/g,"&#39;")}, "${pn}")'>⬇ PDF</button>
-        </div>
-      </div>
-      ${r.notiz?`<div style="margin-top:10px;font-size:12px;color:#888;padding-top:10px;border-top:1px solid var(--rand);">${r.notiz}</div>`:''}
-    </div>`;
+  listEl.innerHTML=r.map(x=>{
+    const [sc,sl]=sm[x.status]||['r-entwurf',x.status];const pn=x.musa_projekte?.name||'—';
+    const brutto=x.betrag_brutto?x.betrag_brutto.toLocaleString('de-DE',{style:'currency',currency:'EUR'}):'—';
+    const netto=x.betrag_netto?x.betrag_netto.toLocaleString('de-DE',{style:'currency',currency:'EUR'}):'—';
+    return `<div class="rechnung-card"><div class="rechnung-header"><div><div class="rechnung-nr">${x.rechnungsnummer}</div><div class="rechnung-projekt">${pn} · ${x.typ==='teilrechnung'?'Teilrechnung':'Schlussrechnung'}</div><div class="rechnung-projekt">${x.datum}</div></div><div><div class="rechnung-betrag">${brutto}</div><div class="rechnung-sub">inkl. MwSt. · Netto ${netto}</div></div></div><div class="rechnung-footer"><span class="r-status ${sc}">${sl}</span><div style="display:flex;gap:8px;flex-wrap:wrap;">${x.status==='entwurf'?`<button class="btn-rechnung" onclick="rStatus('${x.id}','gesendet')">📤 Gesendet</button>`:''} ${x.status==='gesendet'?`<button class="btn-rechnung" onclick="rStatus('${x.id}','bezahlt')" style="background:var(--gruen)">✅ Bezahlt</button>`:''}<button class="btn-pdf" onclick='pdfErstellen(${JSON.stringify(x).replace(/'/g,"&#39;")}, "${pn}")'>⬇ PDF</button></div></div>${x.notiz?`<div style="margin-top:10px;font-size:12px;color:#888;padding-top:10px;border-top:1px solid var(--rand);">${x.notiz}</div>`:''}</div>`;
   }).join('');
 }
-
-async function rStatus(id,status){
-  await db.from('musa_rechnungen').update({status}).eq('id',id);
-  showOk('Status aktualisiert.');renderRechnungen();
-}
+async function rStatus(id,status){await db.from('musa_rechnungen').update({status}).eq('id',id);showOk('Status aktualisiert.');renderRechnungen();}
 
 // ── PDF ──
 function pdfErstellen(r,projektName){
-  const {jsPDF}=window.jspdf;
-  const doc=new jsPDF({format:'a4',unit:'mm'});
-  doc.setFillColor(226,0,26);doc.rect(0,0,210,28,'F');
-  doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');
-  doc.text('MUSA Elektrotechnik GmbH',14,12);
-  doc.setFontSize(9);doc.setFont('helvetica','normal');
-  doc.text('Am Turbinenkanal 5 · 73240 Wendlingen · Tel 07153 39022 · info@musa-elektrotechnik.de',14,20);
-  doc.setTextColor(30,30,30);
-  doc.setFontSize(15);doc.setFont('helvetica','bold');
-  doc.text(r.typ==='teilrechnung'?'TEILRECHNUNG':'SCHLUSSRECHNUNG',14,44);
-  doc.setFontSize(10);doc.setFont('helvetica','normal');
-  doc.text('Rechnungsnummer: '+r.rechnungsnummer,14,52);
-  doc.text('Datum: '+r.datum,14,58);
-  doc.text('Projekt: '+projektName,14,64);
-  doc.setDrawColor(226,0,26);doc.setLineWidth(.5);doc.line(14,70,196,70);
-  doc.setFont('helvetica','bold');doc.setFontSize(10);
-  doc.text('Leistung',14,80);doc.text('Std.',130,80,{align:'right'});doc.text('Satz',160,80,{align:'right'});doc.text('Betrag',196,80,{align:'right'});
-  doc.setDrawColor(200,200,200);doc.line(14,83,196,83);
-  doc.setFont('helvetica','normal');
-  doc.text('Arbeitsleistung Elektrotechnik',14,91);
-  doc.text((r.stunden_gesamt||0).toFixed(1)+' Std.',130,91,{align:'right'});
-  doc.text(parseFloat(r.stundensatz||85).toFixed(2)+' €',160,91,{align:'right'});
-  doc.text(parseFloat(r.betrag_netto||0).toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,91,{align:'right'});
+  const {jsPDF}=window.jspdf;const doc=new jsPDF({format:'a4',unit:'mm'});
+  doc.setFillColor(226,0,26);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('MUSA Elektrotechnik GmbH',14,12);doc.setFontSize(9);doc.setFont('helvetica','normal');doc.text('Am Turbinenkanal 5 · 73240 Wendlingen · Tel 07153 39022 · info@musa-elektrotechnik.de',14,20);
+  doc.setTextColor(30,30,30);doc.setFontSize(15);doc.setFont('helvetica','bold');doc.text(r.typ==='teilrechnung'?'TEILRECHNUNG':'SCHLUSSRECHNUNG',14,44);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('Rechnungsnummer: '+r.rechnungsnummer,14,52);doc.text('Datum: '+r.datum,14,58);doc.text('Projekt: '+projektName,14,64);
+  doc.setDrawColor(226,0,26);doc.setLineWidth(.5);doc.line(14,70,196,70);doc.setFont('helvetica','bold');doc.setFontSize(10);doc.text('Leistung',14,80);doc.text('Std.',130,80,{align:'right'});doc.text('Satz',160,80,{align:'right'});doc.text('Betrag',196,80,{align:'right'});doc.setDrawColor(200,200,200);doc.line(14,83,196,83);doc.setFont('helvetica','normal');doc.text('Arbeitsleistung Elektrotechnik',14,91);doc.text((r.stunden_gesamt||0).toFixed(1)+' Std.',130,91,{align:'right'});doc.text(parseFloat(r.stundensatz||85).toFixed(2)+' €',160,91,{align:'right'});doc.text(parseFloat(r.betrag_netto||0).toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,91,{align:'right'});
   if(r.notiz){doc.setFontSize(9);doc.setTextColor(120,120,120);doc.text(r.notiz,14,99);doc.setTextColor(30,30,30);doc.setFontSize(10);}
-  const y=r.notiz?114:106;
-  doc.line(14,y-4,196,y-4);
-  const mwst=parseFloat(r.betrag_netto||0)*.19;
-  doc.text('Nettobetrag:',140,y);doc.text(parseFloat(r.betrag_netto||0).toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,y,{align:'right'});
-  doc.text('MwSt. 19 %:',140,y+8);doc.text(mwst.toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,y+8,{align:'right'});
-  doc.setFont('helvetica','bold');doc.setFontSize(12);
-  doc.setFillColor(240,240,240);doc.rect(130,y+12,66,10,'F');
-  doc.text('Bruttobetrag:',140,y+20);doc.text(parseFloat(r.betrag_brutto||0).toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,y+20,{align:'right'});
-  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(100,100,100);
-  doc.text('Zahlungsziel: 14 Tage netto · Bankverbindung: Muster-Bank · IBAN: DE00 0000 0000 0000 0000 00',14,265);
-  doc.text('Steuernummer: 00/000/00000 · Geschäftsführer: Mustermann',14,271);
+  const y=r.notiz?114:106;doc.line(14,y-4,196,y-4);const mwst=parseFloat(r.betrag_netto||0)*.19;doc.text('Nettobetrag:',140,y);doc.text(parseFloat(r.betrag_netto||0).toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,y,{align:'right'});doc.text('MwSt. 19 %:',140,y+8);doc.text(mwst.toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,y+8,{align:'right'});doc.setFont('helvetica','bold');doc.setFontSize(12);doc.setFillColor(240,240,240);doc.rect(130,y+12,66,10,'F');doc.text('Bruttobetrag:',140,y+20);doc.text(parseFloat(r.betrag_brutto||0).toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,y+20,{align:'right'});
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(100,100,100);doc.text('Zahlungsziel: 14 Tage netto · Bankverbindung: Muster-Bank · IBAN: DE00 0000 0000 0000 0000 00',14,265);doc.text('Steuernummer: 00/000/00000 · Geschäftsführer: Mustermann',14,271);
   doc.save(r.rechnungsnummer+'.pdf');
 }
 
