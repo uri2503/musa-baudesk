@@ -7,10 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root {
-  --rot:#E2001A; --rot-dark:#b50015; --dunkel:#1a1a1a; --grau:#3d3d3d;
-  --hellgrau:#f2f2f2; --rand:#e0e0e0; --gruen:#2e7d32; --orange:#e65100; --blau:#1565c0;
-}
+:root{--rot:#E2001A;--rot-dark:#b50015;--dunkel:#1a1a1a;--grau:#3d3d3d;--hellgrau:#f2f2f2;--rand:#e0e0e0;--gruen:#2e7d32;--orange:#e65100;--blau:#1565c0;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--hellgrau);color:var(--dunkel);min-height:100vh;}
 
@@ -19,55 +16,77 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .login-box{background:white;border-radius:14px;padding:36px 28px;width:100%;max-width:360px;}
 .login-logo{display:flex;align-items:center;gap:10px;margin-bottom:28px;}
 .login-badge{background:var(--rot);color:white;font-size:15px;font-weight:800;padding:6px 12px;border-radius:5px;letter-spacing:.1em;}
-.login-title{font-size:18px;font-weight:700;}
-.login-sub{font-size:13px;color:#888;margin-top:2px;}
+.login-title{font-size:18px;font-weight:700;}.login-sub{font-size:13px;color:#888;margin-top:2px;}
 .login-field{margin-bottom:14px;}
 .login-field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:6px;}
 .login-field input{width:100%;padding:12px 14px;border:1.5px solid var(--rand);border-radius:8px;font-size:15px;}
 .login-field input:focus{outline:none;border-color:var(--rot);}
 .btn-login{width:100%;padding:14px;background:var(--rot);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;margin-top:6px;}
-.btn-login:hover{background:var(--rot-dark);}
-.btn-login:disabled{background:#ccc;cursor:not-allowed;}
+.btn-login:hover{background:var(--rot-dark);}.btn-login:disabled{background:#ccc;cursor:not-allowed;}
 .login-error{background:#fff0f0;color:var(--rot);font-size:13px;padding:10px 14px;border-radius:8px;margin-bottom:14px;display:none;}
 .login-hint{font-size:11px;color:#bbb;text-align:center;margin-top:14px;line-height:1.6;}
 
-/* APP */
+/* APP SHELL */
 #app{display:none;}
 header{background:var(--dunkel);color:white;display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:56px;position:sticky;top:0;z-index:100;}
 .logo{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;}
 .logo-badge{background:var(--rot);color:white;font-size:11px;font-weight:700;padding:3px 8px;border-radius:3px;}
-.user-info{font-size:12px;color:#888;text-align:right;cursor:pointer;}
-.user-info:hover{color:white;}
+.user-info{font-size:12px;color:#888;text-align:right;cursor:pointer;}.user-info:hover{color:white;}
 .user-rolle{font-size:10px;color:var(--rot);font-weight:700;text-transform:uppercase;}
-
-.tabs{display:flex;background:var(--dunkel);border-top:1px solid #333;}
-.tab-btn{flex:1;padding:12px 6px;background:none;border:none;color:#777;font-size:12px;font-weight:600;cursor:pointer;letter-spacing:.03em;text-transform:uppercase;border-bottom:3px solid transparent;transition:all .15s;}
+.tabs{display:flex;background:var(--dunkel);border-top:1px solid #333;overflow-x:auto;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab-btn{flex-shrink:0;padding:12px 14px;background:none;border:none;color:#777;font-size:12px;font-weight:600;cursor:pointer;letter-spacing:.03em;text-transform:uppercase;border-bottom:3px solid transparent;transition:all .15s;white-space:nowrap;}
 .tab-btn.active{color:white;border-bottom-color:var(--rot);}
+.view{display:none;}.view.active{display:block;}
 
-.view{display:none;} .view.active{display:block;}
+/* STEMPELUHR WIDGET */
+.stempel-widget{margin:16px;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.12);}
+.stempel-header{background:var(--dunkel);padding:20px;text-align:center;}
+.stempel-uhr{font-size:52px;font-weight:800;color:white;letter-spacing:0.05em;font-variant-numeric:tabular-nums;line-height:1;}
+.stempel-datum{font-size:13px;color:#888;margin-top:4px;}
+.stempel-status{display:inline-block;margin-top:10px;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+.stempel-status.ein{background:#e8f5e9;color:var(--gruen);}
+.stempel-status.aus{background:#f5f5f5;color:#777;}
+.stempel-body{background:white;padding:16px;}
+.stempel-projekt{margin-bottom:12px;}
+.stempel-btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.btn-kommen{padding:18px;background:var(--gruen);color:white;border:none;border-radius:10px;font-size:16px;font-weight:800;cursor:pointer;transition:all .15s;}
+.btn-kommen:hover{background:#1b5e20;}
+.btn-kommen:disabled{background:#ccc;cursor:not-allowed;}
+.btn-gehen{padding:18px;background:var(--rot);color:white;border:none;border-radius:10px;font-size:16px;font-weight:800;cursor:pointer;transition:all .15s;}
+.btn-gehen:hover{background:var(--rot-dark);}
+.btn-gehen:disabled{background:#ccc;cursor:not-allowed;}
+.stempel-info{background:var(--hellgrau);border-radius:8px;padding:12px;margin-top:12px;font-size:13px;color:var(--grau);text-align:center;line-height:1.6;}
+.stempel-info strong{color:var(--dunkel);}
+.stempel-history{margin-top:14px;}
+.stempel-history-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:8px;}
+.stempel-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--rand);font-size:13px;}
+.stempel-row:last-child{border-bottom:none;}
+.stempel-row-datum{color:#888;}
+.stempel-row-std{font-weight:700;color:var(--dunkel);}
 
-/* FORMS */
-.form-wrap{max-width:540px;margin:0 auto;padding:20px 16px 60px;}
-.section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:8px;margin-top:22px;}
+/* RAPPORT */
+.form-wrap{max-width:540px;margin:0 auto;padding:16px 16px 60px;}
+.section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:8px;margin-top:20px;}
 select,input[type="text"],input[type="number"],input[type="date"],textarea{width:100%;padding:12px 14px;border:1.5px solid var(--rand);border-radius:8px;font-size:15px;background:white;color:var(--dunkel);appearance:none;-webkit-appearance:none;}
 select:focus,input:focus,textarea:focus{outline:none;border-color:var(--rot);}
-textarea{min-height:90px;resize:vertical;line-height:1.5;}
+textarea{min-height:80px;resize:vertical;line-height:1.5;}
 .chip-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .chip{padding:10px 8px;border:1.5px solid var(--rand);border-radius:8px;background:white;font-size:12px;font-weight:600;color:var(--grau);cursor:pointer;text-align:center;transition:all .15s;user-select:none;}
 .chip.selected{background:var(--rot);border-color:var(--rot);color:white;}
 .zeit-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .zeit-label{font-size:11px;color:#888;margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
-.foto-area{border:2px dashed var(--rand);border-radius:8px;background:white;text-align:center;padding:24px 16px;cursor:pointer;transition:border-color .15s;}
+.stunden-hint{font-size:11px;color:var(--gruen);font-weight:600;margin-top:4px;}
+.foto-area{border:2px dashed var(--rand);border-radius:8px;background:white;text-align:center;padding:20px 16px;cursor:pointer;transition:border-color .15s;}
 .foto-area:hover{border-color:var(--rot);}
 .foto-area input{display:none;}
-.foto-icon{font-size:32px;margin-bottom:6px;}
+.foto-icon{font-size:28px;margin-bottom:4px;}
 .foto-text{font-size:13px;color:#888;}
-.foto-text strong{color:var(--rot);display:block;font-size:12px;margin-top:4px;}
+.foto-text strong{color:var(--rot);display:block;font-size:12px;margin-top:3px;}
 .foto-previews{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px;}
 .foto-thumb{aspect-ratio:1;object-fit:cover;border-radius:6px;border:1.5px solid var(--rand);width:100%;}
-.btn-primary{width:100%;padding:16px;background:var(--rot);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;margin-top:28px;transition:background .15s;}
-.btn-primary:hover{background:var(--rot-dark);}
-.btn-primary:disabled{background:#ccc;cursor:not-allowed;}
+.btn-primary{width:100%;padding:16px;background:var(--rot);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;margin-top:20px;transition:background .15s;}
+.btn-primary:hover{background:var(--rot-dark);}.btn-primary:disabled{background:#ccc;cursor:not-allowed;}
 
 /* DASHBOARD */
 .dashboard{padding:16px;max-width:900px;margin:0 auto;}
@@ -114,6 +133,27 @@ textarea{min-height:90px;resize:vertical;line-height:1.5;}
 .toggle-icon{font-size:18px;color:#bbb;transition:transform .2s;}
 .projekt-card.open .toggle-icon{transform:rotate(180deg);}
 
+/* AUSWERTUNG */
+.auswertung-wrap{padding:16px;max-width:800px;margin:0 auto;}
+.period-row{display:flex;gap:8px;margin-bottom:20px;}
+.period-btn{flex:1;padding:10px;border:1.5px solid var(--rand);border-radius:8px;background:white;font-size:13px;font-weight:600;color:var(--grau);cursor:pointer;text-align:center;transition:all .15s;}
+.period-btn.active{background:var(--dunkel);border-color:var(--dunkel);color:white;}
+.ma-card{background:white;border-radius:10px;border:1.5px solid var(--rand);padding:14px;margin-bottom:10px;}
+.ma-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.ma-name{font-size:14px;font-weight:700;}
+.ma-rolle-tag{font-size:10px;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:4px;background:var(--hellgrau);color:var(--grau);}
+.ma-stunden-gross{font-size:24px;font-weight:800;color:var(--rot);}
+.ma-stunden-label{font-size:11px;color:#888;}
+.bar-wrap{height:10px;background:var(--hellgrau);border-radius:5px;overflow:hidden;margin-top:8px;}
+.bar-fill{height:100%;background:var(--rot);border-radius:5px;transition:width .6s ease;}
+.ma-details{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;}
+.ma-detail-cell{text-align:center;}
+.ma-detail-val{font-size:16px;font-weight:800;color:var(--dunkel);}
+.ma-detail-lbl{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.05em;}
+.gesamt-card{background:var(--dunkel);color:white;border-radius:10px;padding:16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.gesamt-val{font-size:32px;font-weight:800;color:white;}
+.gesamt-lbl{font-size:12px;color:#888;}
+
 /* RECHNUNGEN */
 .rechnungen-wrap{padding:16px;max-width:800px;margin:0 auto;}
 .rechnung-card{background:white;border-radius:10px;border:1.5px solid var(--rand);padding:16px;margin-bottom:12px;}
@@ -124,9 +164,7 @@ textarea{min-height:90px;resize:vertical;line-height:1.5;}
 .rechnung-sub{font-size:11px;color:#888;text-align:right;}
 .rechnung-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid var(--rand);flex-wrap:wrap;gap:10px;}
 .r-status{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;}
-.r-entwurf{background:#f5f5f5;color:#777;}
-.r-gesendet{background:#e3f2fd;color:var(--blau);}
-.r-bezahlt{background:#e8f5e9;color:var(--gruen);}
+.r-entwurf{background:#f5f5f5;color:#777;}.r-gesendet{background:#e3f2fd;color:var(--blau);}.r-bezahlt{background:#e8f5e9;color:var(--gruen);}
 .neu-rechnung-btn{width:100%;padding:14px;border:2px dashed var(--rand);border-radius:10px;background:white;font-size:14px;font-weight:700;color:var(--grau);cursor:pointer;margin-bottom:16px;transition:all .15s;}
 .neu-rechnung-btn:hover{border-color:var(--rot);color:var(--rot);}
 .neu-rechnung-form{background:white;border-radius:10px;border:1.5px solid var(--rand);padding:16px;margin-bottom:16px;display:none;}
@@ -136,11 +174,10 @@ textarea{min-height:90px;resize:vertical;line-height:1.5;}
 .form-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:5px;}
 .btn-pdf{padding:8px 16px;background:var(--rot);color:white;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;}
 
-/* TOAST */
+/* TOAST & LOADING */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:14px 24px;border-radius:10px;font-weight:700;font-size:14px;z-index:999;box-shadow:0 4px 20px rgba(0,0,0,.2);white-space:nowrap;display:none;}
 .toast.show{display:block;}
-.toast-ok{background:var(--gruen);color:white;}
-.toast-err{background:var(--rot);color:white;}
+.toast-ok{background:var(--gruen);color:white;}.toast-err{background:var(--rot);color:white;}
 .loading{text-align:center;padding:40px;color:#aaa;font-size:14px;}
 .spinner{display:inline-block;width:24px;height:24px;border:3px solid #eee;border-top-color:var(--rot);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:8px;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -158,14 +195,10 @@ textarea{min-height:90px;resize:vertical;line-height:1.5;}
       <div><div class="login-title">BauDesk</div><div class="login-sub">Projektmanagement</div></div>
     </div>
     <div class="login-error" id="login-error"></div>
-    <div class="login-field">
-      <label>E-Mail</label>
-      <input type="email" id="l-email" placeholder="name@musa-elektrotechnik.de" autocomplete="username">
-    </div>
-    <div class="login-field">
-      <label>Passwort</label>
-      <input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
-    </div>
+    <div class="login-field"><label>E-Mail</label>
+      <input type="email" id="l-email" placeholder="name@musa-elektrotechnik.de" autocomplete="username"></div>
+    <div class="login-field"><label>Passwort</label>
+      <input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"></div>
     <button class="btn-login" id="btn-login" onclick="doLogin()">Anmelden →</button>
     <div class="login-hint">mueller@musa-elektrotechnik.de · Musa2024!<br>pl@musa-elektrotechnik.de · Musa9999!</div>
   </div>
@@ -177,17 +210,42 @@ textarea{min-height:90px;resize:vertical;line-height:1.5;}
     <div class="logo"><span class="logo-badge">MUSA</span><span>BauDesk</span></div>
     <div class="user-info" onclick="doLogout()">
       <div id="user-name">—</div>
-      <div class="user-rolle" id="user-rolle">—</div>
+      <div class="user-rolle" id="user-rolle">Abmelden</div>
     </div>
   </header>
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('rapport',this)">📋 Rapport</button>
+    <button class="tab-btn active" onclick="switchTab('stempel',this)">⏱ Stempel</button>
+    <button class="tab-btn" onclick="switchTab('rapport',this)">📋 Rapport</button>
     <button class="tab-btn" onclick="switchTab('dashboard',this)">📊 Dashboard</button>
-    <button class="tab-btn" id="tab-rechnungen" onclick="switchTab('rechnungen',this)">📄 Rechnungen</button>
+    <button class="tab-btn pl-only" onclick="switchTab('auswertung',this)">📈 Auswertung</button>
+    <button class="tab-btn pl-only" onclick="switchTab('rechnungen',this)">📄 Rechnungen</button>
+  </div>
+
+  <!-- STEMPELUHR -->
+  <div class="view active" id="view-stempel">
+    <div class="stempel-widget">
+      <div class="stempel-header">
+        <div class="stempel-uhr" id="s-uhr">00:00:00</div>
+        <div class="stempel-datum" id="s-datum">—</div>
+        <div class="stempel-status aus" id="s-status">Nicht gestempelt</div>
+      </div>
+      <div class="stempel-body">
+        <div class="stempel-projekt">
+          <div class="form-label" style="margin-bottom:6px;">Projekt</div>
+          <select id="s-projekt"><option value="">— Projekt auswählen —</option></select>
+        </div>
+        <div class="stempel-btn-row">
+          <button class="btn-kommen" id="btn-kommen" onclick="stempelKommen()">▶ KOMMEN</button>
+          <button class="btn-gehen" id="btn-gehen" onclick="stempelGehen()" disabled>■ GEHEN</button>
+        </div>
+        <div class="stempel-info" id="s-info">Projekt auswählen und „KOMMEN" drücken um die Zeit zu erfassen.</div>
+        <div class="stempel-history" id="s-history"></div>
+      </div>
+    </div>
   </div>
 
   <!-- RAPPORT -->
-  <div class="view active" id="view-rapport">
+  <div class="view" id="view-rapport">
   <div class="form-wrap">
     <div class="section-title">Projekt</div>
     <select id="r-projekt"><option value="">— Projekt auswählen —</option></select>
@@ -205,7 +263,10 @@ textarea{min-height:90px;resize:vertical;line-height:1.5;}
     <div class="section-title">Datum & Stunden</div>
     <div class="zeit-row">
       <div><div class="zeit-label">Datum</div><input type="date" id="r-datum"></div>
-      <div><div class="zeit-label">Stunden</div><input type="number" id="r-stunden" placeholder="8" min="0.5" max="12" step="0.5"></div>
+      <div><div class="zeit-label">Stunden</div>
+        <input type="number" id="r-stunden" placeholder="8" min="0.5" max="12" step="0.5">
+        <div class="stunden-hint" id="r-stunden-hint" style="display:none;">⏱ Aus Stempeluhr übernommen</div>
+      </div>
     </div>
     <div class="section-title">Tätigkeitsbeschreibung</div>
     <textarea id="r-beschreibung" placeholder="Was wurde heute gemacht?&#10;Z.B.: Kabelverlegung EG abgeschlossen…"></textarea>
@@ -227,7 +288,7 @@ textarea{min-height:90px;resize:vertical;line-height:1.5;}
       <div class="kpi-card"><div class="kpi-label">Projekte</div><div class="kpi-value rot" id="kpi-projekte">—</div></div>
       <div class="kpi-card"><div class="kpi-label">Rapporte heute</div><div class="kpi-value" id="kpi-heute">—</div></div>
       <div class="kpi-card"><div class="kpi-label">Stunden gesamt</div><div class="kpi-value" id="kpi-stunden">—</div></div>
-      <div class="kpi-card"><div class="kpi-label">Offen / Aktiv</div><div class="kpi-value" id="kpi-offen">—</div></div>
+      <div class="kpi-card"><div class="kpi-label">Aktive Projekte</div><div class="kpi-value" id="kpi-offen">—</div></div>
     </div>
     <div class="filter-row">
       <div class="filter-chip active" onclick="setFilter('alle',this)">Alle</div>
@@ -238,6 +299,19 @@ textarea{min-height:90px;resize:vertical;line-height:1.5;}
       <div class="filter-chip" onclick="setFilter('Industrie & Gewerbe',this)">Industrie & Gewerbe</div>
     </div>
     <div id="projekt-list"><div class="loading"><div class="spinner"></div><br>Lade Projekte…</div></div>
+  </div>
+  </div>
+
+  <!-- AUSWERTUNG -->
+  <div class="view" id="view-auswertung">
+  <div class="auswertung-wrap">
+    <div class="period-row">
+      <div class="period-btn active" onclick="setPeriod('woche',this)">Diese Woche</div>
+      <div class="period-btn" onclick="setPeriod('monat',this)">Dieser Monat</div>
+      <div class="period-btn" onclick="setPeriod('gesamt',this)">Gesamt</div>
+    </div>
+    <div id="auswertung-gesamt"></div>
+    <div id="auswertung-list"><div class="loading"><div class="spinner"></div><br>Lade…</div></div>
   </div>
   </div>
 
@@ -268,221 +342,300 @@ textarea{min-height:90px;resize:vertical;line-height:1.5;}
 <div class="toast toast-err" id="toast-err"></div>
 
 <script>
-// ── CONFIG ──
-const SB_URL = 'https://ysqzdqazcgyuzdorauiq.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzcXpkcWF6Y2d5dXpkb3JhdWlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5ODM0NzcsImV4cCI6MjA5NTU1OTQ3N30.u5cbSVniUl5Zvlf2rdpnjtvDyKvv9csmPwvdtnEwWzE';
+const SB_URL='https://ysqzdqazcgyuzdorauiq.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzcXpkcWF6Y2d5dXpkb3JhdWlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5ODM0NzcsImV4cCI6MjA5NTU1OTQ3N30.u5cbSVniUl5Zvlf2rdpnjtvDyKvv9csmPwvdtnEwWzE';
+const {createClient}=supabase;
+const db=createClient(SB_URL,SB_KEY);
 
-const { createClient } = supabase;
-const db = createClient(SB_URL, SB_KEY);
-
-let currentUser = null;
-let currentMa   = null;
-let projekte    = [];
-let selectedLeistung = null;
-let fotoData    = [];
-let currentFilter = 'alle';
+let currentUser=null,currentMa=null,projekte=[],mitarbeiter=[];
+let selectedLeistung=null,fotoData=[];
+let currentFilter='alle',currentPeriod='woche';
+let uhrzeitInterval=null,stempelInterval=null;
+let aktiverStempel=null; // { id, ein: Date }
 
 // ── LOGIN ──
-async function doLogin() {
-  const email = document.getElementById('l-email').value.trim();
-  const pass  = document.getElementById('l-pass').value;
-  const errEl = document.getElementById('login-error');
-  const btn   = document.getElementById('btn-login');
+async function doLogin(){
+  const email=document.getElementById('l-email').value.trim();
+  const pass=document.getElementById('l-pass').value;
+  const errEl=document.getElementById('login-error');
+  const btn=document.getElementById('btn-login');
+  errEl.style.display='none';
+  btn.disabled=true;btn.textContent='⏳ Anmelden…';
+  const {data,error}=await db.auth.signInWithPassword({email,password:pass});
+  if(error){errEl.textContent='E-Mail oder Passwort falsch.';errEl.style.display='block';btn.disabled=false;btn.textContent='Anmelden →';return;}
+  await startSession(data.user);
+  btn.disabled=false;btn.textContent='Anmelden →';
+}
 
-  errEl.style.display = 'none';
-  btn.disabled = true; btn.textContent = '⏳ Anmelden…';
-
-  const { data, error } = await db.auth.signInWithPassword({ email, password: pass });
-
-  if (error) {
-    errEl.textContent = 'E-Mail oder Passwort falsch.';
-    errEl.style.display = 'block';
-    btn.disabled = false; btn.textContent = 'Anmelden →';
-    return;
+async function startSession(user){
+  currentUser=user;
+  const {data:ma}=await db.from('musa_mitarbeiter').select('*').eq('auth_user_id',user.id).single();
+  currentMa=ma;
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('app').style.display='block';
+  document.getElementById('user-name').textContent=ma?.name||user.email;
+  document.getElementById('user-rolle').textContent=(ma?.rolle||'')+'  ·  Abmelden';
+  // PL-Only Tabs
+  if(ma?.rolle==='monteur'){
+    document.querySelectorAll('.pl-only').forEach(t=>t.style.display='none');
   }
-
-  currentUser = data.user;
-  // Mitarbeiter-Profil laden
-  const { data: ma } = await db.from('musa_mitarbeiter').select('*').eq('auth_user_id', currentUser.id).single();
-  currentMa = ma;
-
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  document.getElementById('user-name').textContent = (ma?.name || email) + ' · Abmelden';
-  document.getElementById('user-rolle').textContent = ma?.rolle || '';
-
-  // Rechnungen nur für PL/Admin/Bauleiter
-  if (ma?.rolle === 'monteur') {
-    document.getElementById('tab-rechnungen').style.display = 'none';
-  }
-
-  btn.disabled = false; btn.textContent = 'Anmelden →';
+  startUhr();
   init();
 }
 
-async function doLogout() {
+async function doLogout(){
   await db.auth.signOut();
-  currentUser = null; currentMa = null;
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('l-pass').value = '';
+  clearInterval(uhrzeitInterval);clearInterval(stempelInterval);
+  currentUser=null;currentMa=null;aktiverStempel=null;
+  document.getElementById('app').style.display='none';
+  document.getElementById('login-screen').style.display='flex';
+  document.getElementById('l-pass').value='';
 }
 
-// Auto-Login bei gespeicherter Session
-db.auth.getSession().then(async ({ data: { session } }) => {
-  if (session) {
-    currentUser = session.user;
-    const { data: ma } = await db.from('musa_mitarbeiter').select('*').eq('auth_user_id', currentUser.id).single();
-    currentMa = ma;
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    document.getElementById('user-name').textContent = (ma?.name || session.user.email) + ' · Abmelden';
-    document.getElementById('user-rolle').textContent = ma?.rolle || '';
-    if (ma?.rolle === 'monteur') document.getElementById('tab-rechnungen').style.display = 'none';
-    init();
-  }
+db.auth.getSession().then(async({data:{session}})=>{
+  if(session) await startSession(session.user);
 });
 
+// ── UHRZEIT LAUFEN LASSEN ──
+function startUhr(){
+  clearInterval(uhrzeitInterval);
+  function tick(){
+    const now=new Date();
+    document.getElementById('s-uhr').textContent=
+      now.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    document.getElementById('s-datum').textContent=
+      now.toLocaleDateString('de-DE',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
+  }
+  tick();
+  uhrzeitInterval=setInterval(tick,1000);
+}
+
 // ── INIT ──
-async function init() {
-  document.getElementById('r-datum').value = new Date().toISOString().split('T')[0];
-  document.getElementById('rneu-datum').value = new Date().toISOString().split('T')[0];
-  try {
-    const { data } = await db.from('musa_projekte').select('*').order('name');
-    projekte = data || [];
-    ['r-projekt','rneu-projekt'].forEach(id => {
-      const sel = document.getElementById(id);
-      sel.innerHTML = '<option value="">— Projekt auswählen —</option>';
-      projekte.forEach(p => { const o = document.createElement('option'); o.value=p.id; o.textContent=p.name; sel.appendChild(o); });
-    });
-    renderDashboard();
-    renderRechnungen();
-  } catch(e) { showErr('Ladefehler: ' + e.message); }
+async function init(){
+  document.getElementById('r-datum').value=new Date().toISOString().split('T')[0];
+  document.getElementById('rneu-datum').value=new Date().toISOString().split('T')[0];
+  const [{data:p},{data:m}]=await Promise.all([
+    db.from('musa_projekte').select('*').order('name'),
+    db.from('musa_mitarbeiter').select('*').order('name')
+  ]);
+  projekte=p||[];mitarbeiter=m||[];
+  ['r-projekt','s-projekt','rneu-projekt'].forEach(id=>{
+    const sel=document.getElementById(id);
+    if(!sel)return;
+    sel.innerHTML='<option value="">— Projekt auswählen —</option>';
+    projekte.forEach(pr=>{const o=document.createElement('option');o.value=pr.id;o.textContent=pr.name;sel.appendChild(o);});
+  });
+  await ladeAktivenStempel();
+  renderDashboard();
+  renderRechnungen();
+  renderAuswertung();
 }
 
 // ── TABS ──
-function switchTab(tab, btn) {
+function switchTab(tab,btn){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('view-'+tab).classList.add('active');
   btn.classList.add('active');
-  if (tab==='dashboard') renderDashboard();
-  if (tab==='rechnungen') renderRechnungen();
+  if(tab==='dashboard')renderDashboard();
+  if(tab==='auswertung')renderAuswertung();
+  if(tab==='rechnungen')renderRechnungen();
+}
+
+// ── STEMPELUHR ──
+async function ladeAktivenStempel(){
+  if(!currentMa)return;
+  const {data}=await db.from('musa_stempeluhr')
+    .select('*').eq('mitarbeiter_id',currentMa.id)
+    .is('gestempelt_aus',null).order('gestempelt_ein',{ascending:false}).limit(1);
+  if(data&&data.length>0){
+    aktiverStempel={id:data[0].id,ein:new Date(data[0].gestempelt_ein),projektId:data[0].projekt_id};
+    stempelUIAktiv();
+  }
+  ladeStempelHistory();
+}
+
+function stempelUIAktiv(){
+  document.getElementById('btn-kommen').disabled=true;
+  document.getElementById('btn-gehen').disabled=false;
+  document.getElementById('s-status').className='stempel-status ein';
+  document.getElementById('s-status').textContent='Eingestempelt';
+  if(aktiverStempel.projektId){
+    const p=projekte.find(x=>x.id===aktiverStempel.projektId);
+    if(p)document.getElementById('s-projekt').value=aktiverStempel.projektId;
+  }
+  clearInterval(stempelInterval);
+  stempelInterval=setInterval(()=>{
+    if(!aktiverStempel)return;
+    const diff=Math.floor((Date.now()-aktiverStempel.ein.getTime())/1000);
+    const h=Math.floor(diff/3600),m=Math.floor((diff%3600)/60),s=diff%60;
+    // Zeige Laufzeit in Info
+    document.getElementById('s-info').innerHTML=
+      `⏱ Eingestempelt seit <strong>${aktiverStempel.ein.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}</strong><br>
+      Bisher: <strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}</strong>`;
+  },1000);
+}
+
+function stempelUIInaktiv(){
+  clearInterval(stempelInterval);
+  aktiverStempel=null;
+  document.getElementById('btn-kommen').disabled=false;
+  document.getElementById('btn-gehen').disabled=true;
+  document.getElementById('s-status').className='stempel-status aus';
+  document.getElementById('s-status').textContent='Nicht gestempelt';
+  document.getElementById('s-info').textContent='Projekt auswählen und „KOMMEN" drücken um die Zeit zu erfassen.';
+}
+
+async function stempelKommen(){
+  const projektId=document.getElementById('s-projekt').value;
+  if(!projektId){showErr('Bitte zuerst Projekt auswählen.');return;}
+  if(!currentMa){showErr('Nicht eingeloggt.');return;}
+  const {data,error}=await db.from('musa_stempeluhr').insert({
+    mitarbeiter_id:currentMa.id,
+    projekt_id:projektId,
+    gestempelt_ein:new Date().toISOString()
+  }).select().single();
+  if(error){showErr('Fehler: '+error.message);return;}
+  aktiverStempel={id:data.id,ein:new Date(data.gestempelt_ein),projektId};
+  stempelUIAktiv();
+  showOk('✅ Eingestempelt!');
+  ladeStempelHistory();
+}
+
+async function stempelGehen(){
+  if(!aktiverStempel){return;}
+  const jetzt=new Date();
+  const {error}=await db.from('musa_stempeluhr')
+    .update({gestempelt_aus:jetzt.toISOString()})
+    .eq('id',aktiverStempel.id);
+  if(error){showErr('Fehler: '+error.message);return;}
+  // Stunden für Rapport vorausfüllen
+  const diffH=((jetzt-aktiverStempel.ein)/3600000).toFixed(1);
+  document.getElementById('r-stunden').value=diffH;
+  document.getElementById('r-datum').value=jetzt.toISOString().split('T')[0];
+  document.getElementById('r-stunden-hint').style.display='block';
+  if(aktiverStempel.projektId) document.getElementById('r-projekt').value=aktiverStempel.projektId;
+  stempelUIInaktiv();
+  showOk('✅ Ausgestempelt — Rapport vorausgefüllt!');
+  ladeStempelHistory();
+}
+
+async function ladeStempelHistory(){
+  if(!currentMa)return;
+  const {data}=await db.from('musa_stempeluhr')
+    .select('*,musa_projekte(name)')
+    .eq('mitarbeiter_id',currentMa.id)
+    .not('gestempelt_aus','is',null)
+    .order('gestempelt_ein',{ascending:false}).limit(5);
+  const el=document.getElementById('s-history');
+  if(!data||!data.length){el.innerHTML='';return;}
+  el.innerHTML=`<div class="stempel-history-title">Letzte Einträge</div>`+
+    data.map(r=>{
+      const ein=new Date(r.gestempelt_ein);
+      const aus=new Date(r.gestempelt_aus);
+      const std=((aus-ein)/3600000).toFixed(1);
+      const datum=ein.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'});
+      const zeitspan=ein.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' – '+aus.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+      const pName=r.musa_projekte?.name||'—';
+      return `<div class="stempel-row">
+        <div><div style="font-weight:600;font-size:13px;">${pName}</div>
+             <div class="stempel-row-datum">${datum} · ${zeitspan}</div></div>
+        <div class="stempel-row-std">${std} Std.</div>
+      </div>`;
+    }).join('');
 }
 
 // ── RAPPORT ──
-function toggleChip(el) {
+function toggleChip(el){
   document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedLeistung = el.dataset.val;
+  el.classList.add('selected');selectedLeistung=el.dataset.val;
 }
 
-function handleFotos(e) {
-  const files = Array.from(e.target.files);
-  const pre = document.getElementById('foto-previews');
-  pre.innerHTML = ''; fotoData = [];
-  files.slice(0,6).forEach(file => {
-    const reader = new FileReader();
-    reader.onload = ev => {
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const max=600; let w=img.width,h=img.height;
+function handleFotos(e){
+  const files=Array.from(e.target.files);
+  const pre=document.getElementById('foto-previews');
+  pre.innerHTML='';fotoData=[];
+  files.slice(0,6).forEach(file=>{
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      const img=new Image();
+      img.onload=()=>{
+        const canvas=document.createElement('canvas');
+        const max=600;let w=img.width,h=img.height;
         if(w>max){h=h*(max/w);w=max;}
-        canvas.width=w; canvas.height=h;
+        canvas.width=w;canvas.height=h;
         canvas.getContext('2d').drawImage(img,0,0,w,h);
         const data=canvas.toDataURL('image/jpeg',.7);
         fotoData.push(data);
-        const th=document.createElement('img'); th.src=data; th.className='foto-thumb';
+        const th=document.createElement('img');th.src=data;th.className='foto-thumb';
         pre.appendChild(th);
-      };
-      img.src=ev.target.result;
-    };
-    reader.readAsDataURL(file);
+      };img.src=ev.target.result;
+    };reader.readAsDataURL(file);
   });
 }
 
-async function rapportSenden() {
-  const projektId    = document.getElementById('r-projekt').value;
-  const stunden      = parseFloat(document.getElementById('r-stunden').value);
-  const beschreibung = document.getElementById('r-beschreibung').value.trim();
-  const datum        = document.getElementById('r-datum').value;
-
-  if (!projektId||!stunden||!beschreibung||!selectedLeistung) {
-    showErr('Bitte alle Felder ausfüllen.'); return;
-  }
-  if (!currentMa) { showErr('Mitarbeiter nicht erkannt.'); return; }
-
-  const btn = document.getElementById('btn-rapport');
-  btn.disabled=true; btn.textContent='⏳ Wird gesendet…';
-
-  const { error } = await db.from('musa_rapporte').insert({
-    projekt_id: projektId,
-    mitarbeiter_id: currentMa.id,
-    datum, stunden,
-    leistung: selectedLeistung,
-    beschreibung,
-    fotos: fotoData.slice(0,3)
+async function rapportSenden(){
+  const projektId=document.getElementById('r-projekt').value;
+  const stunden=parseFloat(document.getElementById('r-stunden').value);
+  const beschreibung=document.getElementById('r-beschreibung').value.trim();
+  const datum=document.getElementById('r-datum').value;
+  if(!projektId||!stunden||!beschreibung||!selectedLeistung){showErr('Bitte alle Felder ausfüllen.');return;}
+  if(!currentMa){showErr('Nicht eingeloggt.');return;}
+  const btn=document.getElementById('btn-rapport');
+  btn.disabled=true;btn.textContent='⏳ Wird gesendet…';
+  const {error}=await db.from('musa_rapporte').insert({
+    projekt_id:projektId,mitarbeiter_id:currentMa.id,
+    datum,stunden,leistung:selectedLeistung,beschreibung,fotos:fotoData.slice(0,3)
   });
-
-  if (error) { showErr('Fehler: '+error.message); }
-  else {
+  if(error){showErr('Fehler: '+error.message);}
+  else{
     document.getElementById('r-projekt').value='';
     document.getElementById('r-stunden').value='';
     document.getElementById('r-beschreibung').value='';
+    document.getElementById('r-stunden-hint').style.display='none';
     document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
     document.getElementById('foto-previews').innerHTML='';
-    fotoData=[]; selectedLeistung=null;
+    fotoData=[];selectedLeistung=null;
     document.getElementById('r-datum').value=new Date().toISOString().split('T')[0];
     showOk('✅ Rapport erfolgreich übermittelt!');
   }
-  btn.disabled=false; btn.textContent='✅ Rapport absenden';
+  btn.disabled=false;btn.textContent='✅ Rapport absenden';
 }
 
 // ── DASHBOARD ──
-function setFilter(val,el) {
+function setFilter(val,el){
   currentFilter=val;
   document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  renderDashboard();
+  el.classList.add('active');renderDashboard();
 }
 
-async function renderDashboard() {
-  const listEl = document.getElementById('projekt-list');
+async function renderDashboard(){
+  const listEl=document.getElementById('projekt-list');
   listEl.innerHTML='<div class="loading"><div class="spinner"></div><br>Lade…</div>';
-  try {
-    const heute = new Date().toISOString().split('T')[0];
-    const { data: rapporte } = await db.from('musa_rapporte')
-      .select('*,musa_mitarbeiter(name),musa_projekte(name)')
-      .order('created_at',{ascending:false});
-
-    const rapporteHeute = (rapporte||[]).filter(r=>r.datum===heute).length;
-    const stundenGesamt = (rapporte||[]).reduce((s,r)=>s+(r.stunden||0),0);
-    const aktiv = projekte.filter(p=>p.status==='aktiv'||p.status==='offen').length;
-
+  try{
+    const heute=new Date().toISOString().split('T')[0];
+    const {data:rapporte}=await db.from('musa_rapporte')
+      .select('*,musa_mitarbeiter(name),musa_projekte(name)').order('created_at',{ascending:false});
+    const rr=rapporte||[];
     document.getElementById('kpi-projekte').textContent=projekte.length;
-    document.getElementById('kpi-heute').textContent=rapporteHeute;
-    document.getElementById('kpi-stunden').textContent=stundenGesamt.toFixed(1).replace('.0','');
-    document.getElementById('kpi-offen').textContent=aktiv;
+    document.getElementById('kpi-heute').textContent=rr.filter(r=>r.datum===heute).length;
+    document.getElementById('kpi-stunden').textContent=rr.reduce((s,r)=>s+(r.stunden||0),0).toFixed(1).replace('.0','');
+    document.getElementById('kpi-offen').textContent=projekte.filter(p=>p.status==='aktiv'||p.status==='offen').length;
 
     let gefiltert=projekte;
     if(currentFilter!=='alle') gefiltert=projekte.filter(p=>p.leistungen&&p.leistungen.includes(currentFilter));
-
     listEl.innerHTML='';
     if(!gefiltert.length){listEl.innerHTML='<div class="empty-state"><div class="big">🔍</div><p>Keine Projekte.</p></div>';return;}
 
-    const statusMap={offen:['status-offen','Offen'],aktiv:['status-aktiv','In Arbeit'],abnahme:['status-abnahme','Abnahme'],abgerechnet:['status-abgerechnet','Abgerechnet'],abgeschlossen:['status-abgerechnet','Abgeschlossen']};
-
-    gefiltert.forEach(p => {
-      const pR=(rapporte||[]).filter(r=>r.projekt_id===p.id);
+    const sm={offen:['status-offen','Offen'],aktiv:['status-aktiv','In Arbeit'],abnahme:['status-abnahme','Abnahme'],abgerechnet:['status-abgerechnet','Abgerechnet'],abgeschlossen:['status-abgerechnet','Abgeschlossen']};
+    gefiltert.forEach(p=>{
+      const pR=rr.filter(r=>r.projekt_id===p.id);
       const sumH=pR.reduce((s,r)=>s+(r.stunden||0),0);
-      const [sc,sl]=statusMap[p.status]||['status-offen',p.status];
+      const [sc,sl]=sm[p.status]||['status-offen',p.status];
       const tags=(p.leistungen||[]).map(l=>`<span class="leistung-tag">${l}</span>`).join('');
       const wert=p.auftragswert?'· '+p.auftragswert.toLocaleString('de-DE',{style:'currency',currency:'EUR'}):'';
-
-      const rapHTML=pR.length===0
-        ?'<div style="padding:14px;color:#aaa;font-size:13px;text-align:center;">Noch keine Rapporte</div>'
-        :pR.map(r=>{
+      const rapHTML=pR.length===0?'<div style="padding:14px;color:#aaa;font-size:13px;text-align:center;">Noch keine Rapporte</div>':
+        pR.map(r=>{
           const ma=r.musa_mitarbeiter?.name||'—';
           const d=new Date(r.created_at);
           const ds=d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
@@ -493,9 +646,7 @@ async function renderDashboard() {
             <div class="rapport-stunden">⏱ ${r.stunden} Std. · ${r.leistung}</div>
           </div></div>`;
         }).join('');
-
-      const card=document.createElement('div');
-      card.className='projekt-card';
+      const card=document.createElement('div');card.className='projekt-card';
       card.innerHTML=`
         <div class="projekt-header" onclick="toggleCard(this)">
           <div class="projekt-info">
@@ -513,7 +664,7 @@ async function renderDashboard() {
         <div class="rapport-list" id="rl-${p.id}">${rapHTML}</div>`;
       listEl.appendChild(card);
     });
-  } catch(e){listEl.innerHTML=`<div class="empty-state"><div class="big">⚠️</div><p>${e.message}</p></div>`;}
+  }catch(e){listEl.innerHTML=`<div class="empty-state"><div class="big">⚠️</div><p>${e.message}</p></div>`;}
 }
 
 function toggleCard(h){
@@ -526,8 +677,86 @@ function toggleCard(h){
 }
 
 function openRechnungFor(id){
-  document.getElementById('tab-rechnungen').click();
+  document.querySelector('.pl-only:last-child').click();
   setTimeout(()=>{document.getElementById('rneu-projekt').value=id;document.getElementById('neu-form').classList.add('open');},100);
+}
+
+// ── AUSWERTUNG ──
+function setPeriod(p,el){
+  currentPeriod=p;
+  document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');renderAuswertung();
+}
+
+async function renderAuswertung(){
+  const listEl=document.getElementById('auswertung-list');
+  const gesamtEl=document.getElementById('auswertung-gesamt');
+  listEl.innerHTML='<div class="loading"><div class="spinner"></div><br>Lade…</div>';
+
+  // Datumsrange berechnen
+  const heute=new Date();
+  let vonDatum;
+  if(currentPeriod==='woche'){
+    const mon=new Date(heute);mon.setDate(heute.getDate()-heute.getDay()+1);
+    vonDatum=mon.toISOString().split('T')[0];
+  } else if(currentPeriod==='monat'){
+    vonDatum=new Date(heute.getFullYear(),heute.getMonth(),1).toISOString().split('T')[0];
+  } else {
+    vonDatum='2000-01-01';
+  }
+
+  const {data:rapporte}=await db.from('musa_rapporte')
+    .select('*,musa_mitarbeiter(name,rolle)')
+    .gte('datum',vonDatum)
+    .order('datum',{ascending:false});
+
+  const rr=rapporte||[];
+  const gesamtStunden=rr.reduce((s,r)=>s+(r.stunden||0),0);
+
+  // Gesamt-Card
+  gesamtEl.innerHTML=`<div class="gesamt-card">
+    <div><div class="gesamt-lbl">${currentPeriod==='woche'?'Diese Woche':currentPeriod==='monat'?'Dieser Monat':'Gesamt'}</div>
+         <div class="gesamt-val">${gesamtStunden.toFixed(1)} Std.</div></div>
+    <div style="text-align:right;">
+      <div class="gesamt-lbl">Rapporte</div>
+      <div style="font-size:24px;font-weight:800;color:white;">${rr.length}</div>
+    </div>
+  </div>`;
+
+  // Pro Mitarbeiter
+  const maMap={};
+  rr.forEach(r=>{
+    const id=r.mitarbeiter_id;
+    if(!maMap[id]) maMap[id]={name:r.musa_mitarbeiter?.name||'—',rolle:r.musa_mitarbeiter?.rolle||'',stunden:0,rapporte:0,tage:new Set()};
+    maMap[id].stunden+=(r.stunden||0);
+    maMap[id].rapporte++;
+    maMap[id].tage.add(r.datum);
+  });
+
+  const maArr=Object.values(maMap).sort((a,b)=>b.stunden-a.stunden);
+  const maxH=maArr.length>0?maArr[0].stunden:1;
+
+  if(!maArr.length){
+    listEl.innerHTML='<div class="empty-state"><div class="big">📊</div><p>Keine Daten im gewählten Zeitraum.</p></div>';
+    return;
+  }
+
+  listEl.innerHTML=maArr.map(ma=>{
+    const pct=Math.round((ma.stunden/maxH)*100);
+    const rolleLabel={monteur:'Monteur',bauleiter:'Bauleiter',projektleiter:'Projektleiter',admin:'Admin'}[ma.rolle]||ma.rolle;
+    return `<div class="ma-card">
+      <div class="ma-card-header">
+        <div><div class="ma-name">${ma.name}</div><span class="ma-rolle-tag">${rolleLabel}</span></div>
+        <div style="text-align:right;"><div class="ma-stunden-gross">${ma.stunden.toFixed(1)}</div><div class="ma-stunden-label">Stunden</div></div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:${pct}%"></div></div>
+      <div class="ma-details">
+        <div class="ma-detail-cell"><div class="ma-detail-val">${ma.rapporte}</div><div class="ma-detail-lbl">Rapporte</div></div>
+        <div class="ma-detail-cell"><div class="ma-detail-val">${ma.tage.size}</div><div class="ma-detail-lbl">Einsatztage</div></div>
+        <div class="ma-detail-cell"><div class="ma-detail-val">${ma.tage.size>0?(ma.stunden/ma.tage.size).toFixed(1):0}</div><div class="ma-detail-lbl">Ø Std./Tag</div></div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 // ── RECHNUNGEN ──
@@ -541,14 +770,12 @@ async function rechnungSpeichern(){
   const satz=parseFloat(document.getElementById('rneu-satz').value)||85;
   const notiz=document.getElementById('rneu-notiz').value;
   if(!projektId||!datum){showErr('Projekt und Datum ausfüllen.');return;}
-  const netto=stunden*satz;
-  const brutto=netto*1.19;
+  const netto=stunden*satz,brutto=netto*1.19;
   const nr='MUSA-'+new Date().getFullYear()+'-'+String(Date.now()).slice(-4);
   const {error}=await db.from('musa_rechnungen').insert({projekt_id:projektId,rechnungsnummer:nr,typ,datum,stunden_gesamt:stunden,stundensatz:satz,betrag_netto:netto,betrag_brutto:brutto,status:'entwurf',notiz});
   if(error){showErr('Fehler: '+error.message);return;}
   document.getElementById('neu-form').classList.remove('open');
-  showOk('✅ Rechnung angelegt!');
-  renderRechnungen();
+  showOk('✅ Rechnung angelegt!');renderRechnungen();
 }
 
 async function renderRechnungen(){
@@ -562,7 +789,6 @@ async function renderRechnungen(){
     const pn=r.musa_projekte?.name||'—';
     const brutto=r.betrag_brutto?r.betrag_brutto.toLocaleString('de-DE',{style:'currency',currency:'EUR'}):'—';
     const netto=r.betrag_netto?r.betrag_netto.toLocaleString('de-DE',{style:'currency',currency:'EUR'}):'—';
-    const rj=JSON.stringify(r).replace(/\\/g,'\\\\').replace(/"/g,'&quot;');
     return `<div class="rechnung-card">
       <div class="rechnung-header">
         <div><div class="rechnung-nr">${r.rechnungsnummer}</div>
@@ -585,30 +811,29 @@ async function renderRechnungen(){
 
 async function rStatus(id,status){
   await db.from('musa_rechnungen').update({status}).eq('id',id);
-  showOk('Status aktualisiert.');
-  renderRechnungen();
+  showOk('Status aktualisiert.');renderRechnungen();
 }
 
 // ── PDF ──
-function pdfErstellen(r, projektName) {
+function pdfErstellen(r,projektName){
   const {jsPDF}=window.jspdf;
   const doc=new jsPDF({format:'a4',unit:'mm'});
-  doc.setFillColor(226,0,26); doc.rect(0,0,210,28,'F');
-  doc.setTextColor(255,255,255); doc.setFontSize(18); doc.setFont('helvetica','bold');
+  doc.setFillColor(226,0,26);doc.rect(0,0,210,28,'F');
+  doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');
   doc.text('MUSA Elektrotechnik GmbH',14,12);
-  doc.setFontSize(9); doc.setFont('helvetica','normal');
+  doc.setFontSize(9);doc.setFont('helvetica','normal');
   doc.text('Am Turbinenkanal 5 · 73240 Wendlingen · Tel 07153 39022 · info@musa-elektrotechnik.de',14,20);
   doc.setTextColor(30,30,30);
-  doc.setFontSize(15); doc.setFont('helvetica','bold');
+  doc.setFontSize(15);doc.setFont('helvetica','bold');
   doc.text(r.typ==='teilrechnung'?'TEILRECHNUNG':'SCHLUSSRECHNUNG',14,44);
-  doc.setFontSize(10); doc.setFont('helvetica','normal');
+  doc.setFontSize(10);doc.setFont('helvetica','normal');
   doc.text('Rechnungsnummer: '+r.rechnungsnummer,14,52);
   doc.text('Datum: '+r.datum,14,58);
   doc.text('Projekt: '+projektName,14,64);
-  doc.setDrawColor(226,0,26); doc.setLineWidth(.5); doc.line(14,70,196,70);
-  doc.setFont('helvetica','bold'); doc.setFontSize(10);
-  doc.text('Leistung',14,80); doc.text('Std.',130,80,{align:'right'}); doc.text('Satz',160,80,{align:'right'}); doc.text('Betrag',196,80,{align:'right'});
-  doc.setDrawColor(200,200,200); doc.line(14,83,196,83);
+  doc.setDrawColor(226,0,26);doc.setLineWidth(.5);doc.line(14,70,196,70);
+  doc.setFont('helvetica','bold');doc.setFontSize(10);
+  doc.text('Leistung',14,80);doc.text('Std.',130,80,{align:'right'});doc.text('Satz',160,80,{align:'right'});doc.text('Betrag',196,80,{align:'right'});
+  doc.setDrawColor(200,200,200);doc.line(14,83,196,83);
   doc.setFont('helvetica','normal');
   doc.text('Arbeitsleistung Elektrotechnik',14,91);
   doc.text((r.stunden_gesamt||0).toFixed(1)+' Std.',130,91,{align:'right'});
@@ -618,18 +843,17 @@ function pdfErstellen(r, projektName) {
   const y=r.notiz?114:106;
   doc.line(14,y-4,196,y-4);
   const mwst=parseFloat(r.betrag_netto||0)*.19;
-  doc.text('Nettobetrag:',140,y); doc.text(parseFloat(r.betrag_netto||0).toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,y,{align:'right'});
-  doc.text('MwSt. 19 %:',140,y+8); doc.text(mwst.toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,y+8,{align:'right'});
-  doc.setFont('helvetica','bold'); doc.setFontSize(12);
-  doc.setFillColor(240,240,240); doc.rect(130,y+12,66,10,'F');
-  doc.text('Bruttobetrag:',140,y+20); doc.text(parseFloat(r.betrag_brutto||0).toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,y+20,{align:'right'});
-  doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(100,100,100);
+  doc.text('Nettobetrag:',140,y);doc.text(parseFloat(r.betrag_netto||0).toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,y,{align:'right'});
+  doc.text('MwSt. 19 %:',140,y+8);doc.text(mwst.toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,y+8,{align:'right'});
+  doc.setFont('helvetica','bold');doc.setFontSize(12);
+  doc.setFillColor(240,240,240);doc.rect(130,y+12,66,10,'F');
+  doc.text('Bruttobetrag:',140,y+20);doc.text(parseFloat(r.betrag_brutto||0).toLocaleString('de-DE',{minimumFractionDigits:2})+' €',196,y+20,{align:'right'});
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(100,100,100);
   doc.text('Zahlungsziel: 14 Tage netto · Bankverbindung: Muster-Bank · IBAN: DE00 0000 0000 0000 0000 00',14,265);
   doc.text('Steuernummer: 00/000/00000 · Geschäftsführer: Mustermann',14,271);
   doc.save(r.rechnungsnummer+'.pdf');
 }
 
-// ── TOAST ──
 function showOk(m){const t=document.getElementById('toast-ok');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 function showErr(m){const t=document.getElementById('toast-err');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);}
 </script>
